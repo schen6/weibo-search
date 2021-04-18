@@ -12,6 +12,25 @@ from scrapy.utils.project import get_project_settings
 from weibo.items import WeiboItem
 
 
+def get_proxy3(proxyUser, proxyPass):
+    # 代理服务器
+    proxyHost = "http-dyn.abuyun.com"
+    proxyPort = "9020"
+
+    # 代理隧道验证信息
+    proxyUser = proxyUser
+    proxyPass = proxyPass
+
+    proxyMeta = "%(user)s:%(pass)s@%(host)s:%(port)s" % {
+        "host": proxyHost,
+        "port": proxyPort,
+        "user": proxyUser,
+        "pass": proxyPass,
+    }
+
+    return proxyMeta
+
+
 class SearchSpider(scrapy.Spider):
     name = 'search'
     allowed_domains = ['weibo.com']
@@ -43,6 +62,8 @@ class SearchSpider(scrapy.Spider):
     pymysql_error = False
 
     def start_requests(self):
+        proxy = get_proxy3('H1D2G2X93S0Z0K4D', 'D2CA54BD12709B90')
+        proxies = 'http://' + proxy
         start_date = datetime.strptime(self.start_date, '%Y-%m-%d')
         end_date = datetime.strptime(self.end_date,
                                      '%Y-%m-%d') + timedelta(days=1)
@@ -59,7 +80,8 @@ class SearchSpider(scrapy.Spider):
                                      callback=self.parse,
                                      meta={
                                          'base_url': base_url,
-                                         'keyword': keyword
+                                         'keyword': keyword,
+                                         'proxy': proxies
                                      })
             else:
                 for region in self.regions.values():
@@ -75,7 +97,8 @@ class SearchSpider(scrapy.Spider):
                                          meta={
                                              'base_url': base_url,
                                              'keyword': keyword,
-                                             'province': region
+                                             'province': region,
+                                             'proxy': proxies
                                          })
 
     def check_environment(self):
@@ -94,6 +117,8 @@ class SearchSpider(scrapy.Spider):
             raise CloseSpider()
 
     def parse(self, response):
+        proxy = get_proxy3('H1D2G2X93S0Z0K4D', 'D2CA54BD12709B90')
+        proxies = 'http://' + proxy
         base_url = response.meta.get('base_url')
         keyword = response.meta.get('keyword')
         province = response.meta.get('province')
@@ -113,7 +138,8 @@ class SearchSpider(scrapy.Spider):
                 next_url = self.base_url + next_url
                 yield scrapy.Request(url=next_url,
                                      callback=self.parse_page,
-                                     meta={'keyword': keyword})
+                                     meta={'keyword': keyword,
+                                           'proxy': proxies})
         else:
             start_date = datetime.strptime(self.start_date, '%Y-%m-%d')
             end_date = datetime.strptime(self.end_date, '%Y-%m-%d')
@@ -132,11 +158,14 @@ class SearchSpider(scrapy.Spider):
                                          'base_url': base_url,
                                          'keyword': keyword,
                                          'province': province,
+                                         'proxy': proxies,
                                          'date': start_str[:-2]
                                      })
 
     def parse_by_day(self, response):
         """以天为单位筛选"""
+        proxy = get_proxy3('H1D2G2X93S0Z0K4D', 'D2CA54BD12709B90')
+        proxies = 'http://' + proxy
         base_url = response.meta.get('base_url')
         keyword = response.meta.get('keyword')
         province = response.meta.get('province')
@@ -157,7 +186,7 @@ class SearchSpider(scrapy.Spider):
                 next_url = self.base_url + next_url
                 yield scrapy.Request(url=next_url,
                                      callback=self.parse_page,
-                                     meta={'keyword': keyword})
+                                     meta={'keyword': keyword,'proxy': proxies})
         else:
             start_date_str = date + '-0'
             start_date = datetime.strptime(start_date_str, '%Y-%m-%d-%H')
@@ -180,11 +209,14 @@ class SearchSpider(scrapy.Spider):
                                          'keyword': keyword,
                                          'province': province,
                                          'start_time': start_str,
-                                         'end_time': end_str
+                                         'end_time': end_str,
+                                         'proxy': proxies
                                      })
 
     def parse_by_hour(self, response):
         """以小时为单位筛选"""
+        proxy = get_proxy3('H1D2G2X93S0Z0K4D', 'D2CA54BD12709B90')
+        proxies = 'http://' + proxy
         keyword = response.meta.get('keyword')
         is_empty = response.xpath(
             '//div[@class="card card-no-result s-pt20b40"]')
@@ -204,7 +236,7 @@ class SearchSpider(scrapy.Spider):
                 next_url = self.base_url + next_url
                 yield scrapy.Request(url=next_url,
                                      callback=self.parse_page,
-                                     meta={'keyword': keyword})
+                                     meta={'keyword': keyword,'proxy': proxies})
         else:
             for region in self.regions.values():
                 url = ('https://s.weibo.com/weibo?q={}&region=custom:{}:1000'
@@ -220,11 +252,14 @@ class SearchSpider(scrapy.Spider):
                                          'keyword': keyword,
                                          'start_time': start_time,
                                          'end_time': end_time,
-                                         'province': region
+                                         'province': region,
+                                         'proxy': proxies
                                      })
 
     def parse_by_hour_province(self, response):
         """以小时和直辖市/省为单位筛选"""
+        proxy = get_proxy3('H1D2G2X93S0Z0K4D', 'D2CA54BD12709B90')
+        proxies = 'http://' + proxy
         keyword = response.meta.get('keyword')
         is_empty = response.xpath(
             '//div[@class="card card-no-result s-pt20b40"]')
@@ -245,7 +280,7 @@ class SearchSpider(scrapy.Spider):
                 next_url = self.base_url + next_url
                 yield scrapy.Request(url=next_url,
                                      callback=self.parse_page,
-                                     meta={'keyword': keyword})
+                                     meta={'keyword': keyword,'proxy': proxies})
         else:
             for city in province['city'].values():
                 url = ('https://s.weibo.com/weibo?q={}&region=custom:{}:{}'
@@ -262,11 +297,14 @@ class SearchSpider(scrapy.Spider):
                                          'start_time': start_time,
                                          'end_time': end_time,
                                          'province': province,
-                                         'city': city
+                                         'city': city,
+                                         'proxy': proxies
                                      })
 
     def parse_page(self, response):
         """解析一页搜索结果的信息"""
+        proxy = get_proxy3('H1D2G2X93S0Z0K4D', 'D2CA54BD12709B90')
+        proxies = 'http://' + proxy
         keyword = response.meta.get('keyword')
         is_empty = response.xpath(
             '//div[@class="card card-no-result s-pt20b40"]')
@@ -282,7 +320,7 @@ class SearchSpider(scrapy.Spider):
                 next_url = self.base_url + next_url
                 yield scrapy.Request(url=next_url,
                                      callback=self.parse_page,
-                                     meta={'keyword': keyword})
+                                     meta={'keyword': keyword,'proxy': proxies})
 
     def get_article_url(self, selector):
         """获取微博头条文章url"""
