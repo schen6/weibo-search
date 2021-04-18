@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+from datetime import date
+import datetime
+
+today = date.today()
+yesterday = today + datetime.timedelta(days=-1)
 
 BOT_NAME = 'weibo'
 SPIDER_MODULES = ['weibo.spiders']
@@ -7,12 +12,12 @@ COOKIES_ENABLED = False
 TELNETCONSOLE_ENABLED = False
 LOG_LEVEL = 'ERROR'
 # 访问完一个页面再访问下一个时需要等待的时间，默认为10秒
-DOWNLOAD_DELAY = 0
+DOWNLOAD_DELAY = 2
 DEFAULT_REQUEST_HEADERS = {
     'Accept':
     'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
-    'cookie': 'SINAGLOBAL=2484038785411.9326.1507851726206; _ga=GA1.2.1671583653.1541038119; finger_id=9eb22c1869525724; visitor_id=48268b66ba96a632; __gads=ID=5d637ca84b6e744b:T=1580610749:S=ALNI_MbAcV2c02E9iV9kTqyh6NyJcUGYLg; UOR=,,login.sina.com.cn; SSOLoginState=1616669441; _s_tentry=login.sina.com.cn; Apache=8543638744770.97.1616669447690; ULV=1616669447913:147:3:2:8543638744770.97.1616669447690:1616599758767; wvr=6; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWWKZWT5uMYkdzZ988zG-YY5JpX5KMhUgL.Foz4SK20eo20So52dJLoIp7LxKML1KBLBKnLxKqL1hnLBoM41h2NeoqceKz0; ALF=1650209870; SCF=AuNaeEADTjS4V3-hxKu4HjogY1DSoetRLUmI6njH3RFh5MYIkIwSg5bk7ZpYKpHQosgBQONHv7ahDorU-uCHu5s.; SUB=_2A25Nf3CfDeRhGeRH7lMS8i_PzTyIHXVuDeVXrDV8PUNbmtANLUnHkW9NTcB1lh4WwCln5tlu7uWza91F4ooLJOcj; WBStorage=202104181112|undefined; webim_unReadCount=%7B%22time%22%3A1618715933827%2C%22dm_pub_total%22%3A16%2C%22chat_group_client%22%3A999%2C%22chat_group_notice%22%3A1%2C%22allcountNum%22%3A1027%2C%22msgbox%22%3A0%7D'
+    'cookie': 'login_sid_t=5eefddc179e3277c9fedfe8e4685309f; cross_origin_proto=SSL; WBStorage=8daec78e6a891122|undefined; _s_tentry=passport.weibo.com; wb_view_log=1920*10801; Apache=7644084570556.38.1618737251515; SINAGLOBAL=7644084570556.38.1618737251515; ULV=1618737251521:1:1:1:7644084570556.38.1618737251515:; wb_view_log_2951321360=1920*10801; SUB=_2A25Nf4iUDeRhGeRH7lMS8i_PzTyIHXVuDP1crDV8PUNbmtAKLW6hkW9NTcB1ln9-oCEAk0uqzA6-V_6FpIc2LX6i; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWWKZWT5uMYkdzZ988zG-YY5JpX5KzhUgL.Foz4SK20eo20So52dJLoIp7LxKML1KBLBKnLxKqL1hnLBoM41h2NeoqceKz0; ALF=1650273348; SSOLoginState=1618737348; wvr=6; webim_unReadCount=%7B%22time%22%3A1618737534101%2C%22dm_pub_total%22%3A16%2C%22chat_group_client%22%3A999%2C%22chat_group_notice%22%3A1%2C%22allcountNum%22%3A1028%2C%22msgbox%22%3A0%7D'
 }
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,
@@ -33,9 +38,9 @@ CONTAIN_TYPE = 0
 # 具体支持的地名见region.py文件，注意只支持省或直辖市的名字，省下面的市名及直辖市下面的区县名不支持，不筛选请用”全部“
 REGION = ['全部']
 # 搜索的起始日期，为yyyy-mm-dd形式，搜索结果包含该日期
-START_DATE = '2021-04-17'
+START_DATE = yesterday  # '2021-04-17'
 # 搜索的终止日期，为yyyy-mm-dd形式，搜索结果包含该日期
-END_DATE = '2021-04-18'
+END_DATE = yesterday  # '2021-04-18'
 # 进一步细分搜索的阈值，若结果页数大于等于该值，则认为结果没有完全展示，细分搜索条件重新搜索以获取更多微博。数值越大速度越快，也越有可能漏掉微博；数值越小速度越慢，获取的微博就越多。
 # 建议数值大小设置在40到50之间。
 FURTHER_THRESHOLD = 46
