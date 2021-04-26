@@ -43,7 +43,7 @@ class PGPipeline(object):
 
     def process_item(self, item, spider):
         update_time = datetime.datetime.now()
-        self.cur.execute("insert into custom_weibo_search(id,info,update_time) values(%s,%s,%s) on conflict (id) do update set info = excluded.info, update_time=excluded.update_time", (item['weibo']['id'], item['weibo']),update_time)
+        self.cur.execute("insert into custom_weibo_search(id,info,update_time) values(%s,%s,%s) on conflict (id) do update set info = excluded.info, update_time=excluded.update_time", (item['weibo']['id'], item['weibo'],update_time))
         self.connection.commit()
         return item
 
