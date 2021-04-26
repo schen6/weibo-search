@@ -31,7 +31,7 @@ class PGPipeline(object):
         username = cfp.get('pg','username')
         password = cfp.get('pg','password')
         database = cfp.get('pg','database')
-        pgs_port = cfp.get('pg','psg_port')
+        pgs_port = cfp.get('pg','pgs_port')
         pgs_options = cfp.get('pg','pgs_options')
         self.connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database, port=pgs_port, options=pgs_options)
         self.cur = self.connection.cursor()
