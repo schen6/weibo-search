@@ -11,6 +11,7 @@ import os
 import psycopg2
 import datetime
 import configparser
+import json
 
 import scrapy
 from scrapy.exceptions import DropItem
@@ -44,6 +45,7 @@ class PGPipeline(object):
     def process_item(self, item, spider):
         new_item = copy.deepcopy(item)
         res = dict(new_item['weibo'])
+        res = json.dumps(res)
         update_time = datetime.datetime.now()
         self.cur.execute("insert into custom_weibo_search(id,info,update_time) values(%s,%s,%s) on conflict (id) do update set info = excluded.info, update_time=excluded.update_time", (new_item['weibo']['id'], res,update_time))
         self.connection.commit()
