@@ -26,7 +26,7 @@ cfp.read(root_path + '/social.conf')
 
 class PGPipeline(object):
 
-    def open_spider(self, item, spider):
+    def open_spider(self, spider):
         hostname = cfp.get('pg','hostname')
         username = cfp.get('pg','username')
         password = cfp.get('pg','password')
