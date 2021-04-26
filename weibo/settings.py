@@ -22,8 +22,8 @@ DEFAULT_REQUEST_HEADERS = {
 }
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,
-    'weibo.pipelines.PGPipeline': 301,
-    # 'weibo.pipelines.CsvPipeline': 301,
+    # 'weibo.pipelines.PGPipeline': 301,
+    'weibo.pipelines.CsvPipeline': 301,
     # 'weibo.pipelines.MysqlPipeline': 302,
     # 'weibo.pipelines.MongoPipeline': 303,
     # 'weibo.pipelines.MyImagesPipeline': 304,
