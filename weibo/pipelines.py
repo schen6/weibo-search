@@ -10,6 +10,7 @@ import csv
 import os
 import psycopg2
 import datetime
+import configparser
 
 import scrapy
 from scrapy.exceptions import DropItem
@@ -19,16 +20,19 @@ from scrapy.utils.project import get_project_settings
 
 settings = get_project_settings()
 
+cfp = configparser.ConfigParser()
+root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+cfp.read(root_path + '/social.conf')
 
 class PGPipeline(object):
 
     def open_spider(self, item, spider):
-        hostname = 'pgm-bp17df1783hjv89vwo.pg.rds.aliyuncs.com'
-        username = 'sail'
-        password = 'Sprint01' # your password
-        database = 'testdb'
-        pgs_port = '1921'
-        pgs_options = '-c search_path=social,public'
+        hostname = cfp.get('pg','hostname')
+        username = cfp.get('pg','username')
+        password = cfp.get('pg','password')
+        database = cfp.get('pg','database')
+        pgs_port = cfp.get('pg','psg_port')
+        pgs_options = cfp.get('pg','pgs_options')
         self.connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database, port=pgs_port, options=pgs_options)
         self.cur = self.connection.cursor()
 
