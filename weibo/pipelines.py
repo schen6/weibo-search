@@ -8,6 +8,8 @@
 import copy
 import csv
 import os
+import psycopg2
+import datetime
 
 import scrapy
 from scrapy.exceptions import DropItem
@@ -16,6 +18,29 @@ from scrapy.pipelines.images import ImagesPipeline
 from scrapy.utils.project import get_project_settings
 
 settings = get_project_settings()
+
+
+class PGPipeline(object):
+
+    def open_spider(self, item, spider):
+        hostname = 'pgm-bp17df1783hjv89vwo.pg.rds.aliyuncs.com'
+        username = 'sail'
+        password = 'Sprint01' # your password
+        database = 'testdb'
+        pgs_port = '1921'
+        pgs_options = '-c search_path=social,public'
+        self.connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database, port=pgs_port, options=pgs_options)
+        self.cur = self.connection.cursor()
+
+    def close_spider(self, spider):
+        self.cur.close()
+        self.connection.close()
+
+    def process_item(self, item, spider):
+        update_time = datetime.datetime.now()
+        self.cur.execute("insert into custom_weibo_search(id,info,update_time) values(%s,%s,%s) on conflict (id) do update set info = excluded.info, update_time=excluded.update_time", (item['weibo']['id'], item['weibo']),update_time)
+        self.connection.commit()
+        return item
 
 
 class CsvPipeline(object):
