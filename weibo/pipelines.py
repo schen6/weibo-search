@@ -24,6 +24,7 @@ cfp = configparser.ConfigParser()
 root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 cfp.read(root_path + '/social.conf')
 
+
 class PGPipeline(object):
 
     def open_spider(self, spider):
