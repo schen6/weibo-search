@@ -1,0 +1,4 @@
+#xiaohongshu
+type=command
+command = /home/panther/venv/bin/python /home/panther/weibo-search scrapy crawl search
+dependencies=start
