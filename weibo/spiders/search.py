@@ -70,6 +70,7 @@ class SearchSpider(scrapy.Spider):
         start_str = start_date.strftime('%Y-%m-%d') + '-0'
         end_str = end_date.strftime('%Y-%m-%d') + '-0'
         for keyword in self.keyword_list:
+            print(keyword)
             if not self.settings.get('REGION') or '全部' in self.settings.get(
                     'REGION'):
                 base_url = 'https://s.weibo.com/weibo?q=%s' % keyword
@@ -573,5 +574,5 @@ class SearchSpider(scrapy.Spider):
                     retweet['retweet_id'] = ''
                     yield {'weibo': retweet, 'keyword': keyword}
                     weibo['retweet_id'] = retweet['id']
-                print(weibo)
+                # print(weibo)
                 yield {'weibo': weibo, 'keyword': keyword}
