@@ -15,9 +15,16 @@ LOG_LEVEL = 'ERROR'
 # 访问完一个页面再访问下一个时需要等待的时间，默认为10秒
 DOWNLOAD_DELAY = 2
 DEFAULT_REQUEST_HEADERS = {
-    'Accept':
-    'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
+    'pragma': 'no-cache',
+    'sec-ch-ua-mobile': '?0',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36',
     'cookie': 'SINAGLOBAL=581901520149.7524.1619402726924; login_sid_t=09f927b4e980aa5131a151b2b0bd4415; cross_origin_proto=SSL; _s_tentry=-; Apache=1558020680911.3472.1619429456606; ULV=1619429456616:2:2:2:1558020680911.3472.1619429456606:1619402726940; SSOLoginState=1619454911; wvr=6; httpsupgrade_ab=SSL; UOR=,,login.sina.com.cn; wb_view_log_2951321360=1920*10801; SCF=AuNaeEADTjS4V3-hxKu4HjogY1DSoetRLUmI6njH3RFhZiNntJdQhW1iBRpId_gfjp30bkfFqrrep6bioWaCkYc.; SUB=_2A25Njn79DeRhGeRH7lMS8i_PzTyIHXVu-tc1rDV8PUJbmtANLVXBkW9NTcB1lk6jOX40TQyuOfwBsfqW1kXn624O; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWWKZWT5uMYkdzZ988zG-YY5JpX5K-hUgL.Foz4SK20eo20So52dJLoIp7LxKML1KBLBKnLxKqL1hnLBoM41h2NeoqceKz0; ALF=1651196452; webim_unReadCount=%7B%22time%22%3A1619660499126%2C%22dm_pub_total%22%3A16%2C%22chat_group_client%22%3A999%2C%22chat_group_notice%22%3A1%2C%22allcountNum%22%3A1029%2C%22msgbox%22%3A0%7D'
 }
 ITEM_PIPELINES = {
