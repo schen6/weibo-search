@@ -3,7 +3,7 @@ from datetime import date
 import datetime
 
 today = date.today()
-yesterday = today + datetime.timedelta(days=-1)
+yesterday = today + datetime.timedelta(days=-29)
 yesterday = yesterday.strftime("%Y-%m-%d")
 
 BOT_NAME = 'weibo'
