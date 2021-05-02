@@ -25,7 +25,7 @@ DEFAULT_REQUEST_HEADERS = {
     'sec-fetch-user': '?1',
     'upgrade-insecure-requests': '1',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36',
-    'cookie': 'SINAGLOBAL=581901520149.7524.1619402726924; login_sid_t=09f927b4e980aa5131a151b2b0bd4415; cross_origin_proto=SSL; _s_tentry=-; Apache=1558020680911.3472.1619429456606; ULV=1619429456616:2:2:2:1558020680911.3472.1619429456606:1619402726940; SSOLoginState=1619454911; wvr=6; httpsupgrade_ab=SSL; UOR=,,login.sina.com.cn; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWWKZWT5uMYkdzZ988zG-YY5JpX5KMhUgL.Foz4SK20eo20So52dJLoIp7LxKML1KBLBKnLxKqL1hnLBoM41h2NeoqceKz0; ALF=1651389146; SCF=AuNaeEADTjS4V3-hxKu4HjogY1DSoetRLUmI6njH3RFheybVNa4K7uUkNVZY1O5ONzzas3wwtffycrHVWqBr3fg.; SUB=_2A25NiI8NDeRhGeRH7lMS8i_PzTyIHXVu_-fFrDV8PUNbmtANLWLBkW9NTcB1lmOFMj0GNLF007kO0Ey7DKgksKh_; wb_view_log_2951321360=1920*10801; webim_unReadCount=%7B%22time%22%3A1619853156623%2C%22dm_pub_total%22%3A16%2C%22chat_group_client%22%3A999%2C%22chat_group_notice%22%3A1%2C%22allcountNum%22%3A1028%2C%22msgbox%22%3A0%7D'
+    'cookie': 'SINAGLOBAL=581901520149.7524.1619402726924; wvr=6; httpsupgrade_ab=SSL; UOR=,,login.sina.com.cn; SCF=AuNaeEADTjS4V3-hxKu4HjogY1DSoetRLUmI6njH3RFh5oI-g6qCoHXPf1jMC2mBZ3K9vjczsUVxr11bcPbfLU8.; SUB=_2A25NihhJDeRhGeRH7lMS8i_PzTyIHXVu_g6BrDV8PUJbmtANLWnVkW9NTcB1lh-9brD-sQ2EMbUUOalGnU86etLp; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWWKZWT5uMYkdzZ988zG-YY5JpX5K-hUgL.Foz4SK20eo20So52dJLoIp7LxKML1KBLBKnLxKqL1hnLBoM41h2NeoqceKz0; ALF=1651481488; SSOLoginState=1619945497; _s_tentry=login.sina.com.cn; Apache=7537699846887.964.1619945499473; ULV=1619945499514:3:1:1:7537699846887.964.1619945499473:1619429456616; wb_view_log_2951321360=1920*10801; webim_unReadCount=%7B%22time%22%3A1619974447903%2C%22dm_pub_total%22%3A16%2C%22chat_group_client%22%3A999%2C%22chat_group_notice%22%3A1%2C%22allcountNum%22%3A1027%2C%22msgbox%22%3A0%7D'
 }
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,
@@ -39,36 +39,36 @@ ITEM_PIPELINES = {
 # 要搜索的关键词列表，可写多个, 值可以是由关键词或话题组成的列表，也可以是包含关键词的txt文件路径，
 # 如'keyword_list.txt'，txt文件中每个关键词占一行
 KEYWORD_LIST = [
-    '雪花秀~sulwhasoo',
-    '雅诗兰黛~(estee lauder)',
-    'Whoo',
-    '资生堂~shiseido',
-    '兰蔻~lancome',
-    '赫莲娜~(helena rubinstein)',
-    '海蓝之谜~lamer~(la mer)',
-    'skii~sk-ii',
-    '修丽可~skinceuticals',
-    '兰芝~laneige',
-    '倩碧~clinique',
-    '科颜氏~kiehl~kiehls~kiehl\'s',
-    '欧莱雅~loreal',
-    '怡丽丝尔~elixir',
-    '茵芙莎~ipsa',
-    '娇韵诗~clarins',
-    '悦木之源~origins -金钟炫',
-    '欧舒丹~l\'occitane~loccitane',
-    '悦诗风吟~innisfree',
-    '梦妆~mamonde',
-    '玉兰油~olay',
-    '自然堂~chando',
-    '芙丽芳丝~freeplus',
-    '完美日记~(perfect diary)',
-    '花西子~florasis',
-    '玉泽~(dr yu)',
-    '丸美~marubi',
-    '佰草集~herborist',
-    '薇诺娜~winona',
-    '珀莱雅~proya'
+    # '雪花秀~sulwhasoo',
+    # '雅诗兰黛~(estee lauder)',
+    # 'Whoo',
+    # '资生堂~shiseido',
+    '兰蔻~lancome'
+    # '赫莲娜~(helena rubinstein)',
+    # '海蓝之谜~lamer~(la mer)',
+    # 'skii~sk-ii',
+    # '修丽可~skinceuticals',
+    # '兰芝~laneige',
+    # '倩碧~clinique',
+    # '科颜氏~kiehl~kiehls~kiehl\'s',
+    # '欧莱雅~loreal',
+    # '怡丽丝尔~elixir',
+    # '茵芙莎~ipsa',
+    # '娇韵诗~clarins',
+    # '悦木之源~origins -金钟炫',
+    # '欧舒丹~l\'occitane~loccitane',
+    # '悦诗风吟~innisfree',
+    # '梦妆~mamonde',
+    # '玉兰油~olay',
+    # '自然堂~chando',
+    # '芙丽芳丝~freeplus',
+    # '完美日记~(perfect diary)',
+    # '花西子~florasis',
+    # '玉泽~(dr yu)',
+    # '丸美~marubi',
+    # '佰草集~herborist',
+    # '薇诺娜~winona',
+    # '珀莱雅~proya'
 ]  # 或者 KEYWORD_LIST = 'keyword_list.txt'
 # 要搜索的微博类型，0代表搜索全部微博，1代表搜索全部原创微博，2代表热门微博，3代表关注人微博，4代表认证用户微博，5代表媒体微博，6代表观点微博
 WEIBO_TYPE = 0
@@ -78,9 +78,9 @@ CONTAIN_TYPE = 0
 # 具体支持的地名见region.py文件，注意只支持省或直辖市的名字，省下面的市名及直辖市下面的区县名不支持，不筛选请用”全部“
 REGION = ['全部']
 # 搜索的起始日期，为yyyy-mm-dd形式，搜索结果包含该日期
-START_DATE = '2021-04-16'  # '2021-04-17'
+START_DATE = '2021-04-28'  # '2021-04-17'
 # 搜索的终止日期，为yyyy-mm-dd形式，搜索结果包含该日期
-END_DATE = '2021-04-20'  # '2021-04-18'
+END_DATE = '2021-04-28'  # '2021-04-18'
 # 进一步细分搜索的阈值，若结果页数大于等于该值，则认为结果没有完全展示，细分搜索条件重新搜索以获取更多微博。数值越大速度越快，也越有可能漏掉微博；数值越小速度越慢，获取的微博就越多。
 # 建议数值大小设置在40到50之间。
 FURTHER_THRESHOLD = 46
