@@ -10,6 +10,15 @@ import weibo.utils.util as util
 from scrapy.exceptions import CloseSpider
 from scrapy.utils.project import get_project_settings
 from weibo.items import WeiboItem
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.description = 'custom settings for weibo crawler'
+parser.add_argument("-st", "--start_date", help="start_date")
+parser.add_argument("-et", "--end_date", help="end_date")
+
+args = parser.parse_args()
+opt = vars(args)
 
 
 def get_proxy3(proxyUser, proxyPass):
@@ -50,9 +59,15 @@ class SearchSpider(scrapy.Spider):
     contain_type = util.convert_contain_type(settings.get('CONTAIN_TYPE'))
     regions = util.get_regions(settings.get('REGION'))
     base_url = 'https://s.weibo.com'
-    start_date = settings.get('START_DATE',
+    if opt.get('start_date'):
+        start_date = opt.get('start_date')
+    else:
+        start_date = settings.get('START_DATE',
                               datetime.now().strftime('%Y-%m-%d'))
-    end_date = settings.get('END_DATE', datetime.now().strftime('%Y-%m-%d'))
+    if opt.get('end_date'):
+        end_date = opt.get('end_date')
+    else:
+        end_date = settings.get('END_DATE', datetime.now().strftime('%Y-%m-%d'))
     if util.str_to_time(start_date) > util.str_to_time(end_date):
         sys.exit('settings.py配置错误，START_DATE值应早于或等于END_DATE值，请重新配置settings.py')
     further_threshold = settings.get('FURTHER_THRESHOLD', 46)
