@@ -64,7 +64,7 @@ KEYWORD_LIST = [
     '雅诗兰黛~(estee lauder)',
     'Whoo',
     '资生堂~shiseido',
-    '兰蔻~lancome'
+    '兰蔻~lancome',
     '赫莲娜~(helena rubinstein)',
     '海蓝之谜~lamer~(la mer)',
     'skii~sk-ii',
