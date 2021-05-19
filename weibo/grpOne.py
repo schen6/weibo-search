@@ -9,7 +9,8 @@ import os
 import configparser
 cfp = configparser.ConfigParser()
 root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-cfp.read(root_path + '/social.conf')
+cfp_path = root_path + '/social.conf'
+cfp.read(cfp_path)
 
 today = date.today()
 yesterday = today + datetime.timedelta(days=-1)
@@ -17,6 +18,13 @@ yesterday = yesterday.strftime("%Y-%m-%d")
 
 if cfp.get('date','crawl_date'):
     dt = cfp.get('date','crawl_date')
+    t = datetime.datetime.strptime(dt, '%Y-%m-%d')
+    t = t.replace(day=t.day+1)
+    new_t = t.strftime("%Y-%m-%d")
+    cfp.set('date', 'crawl_date', new_t)
+    with open(cfp_path, 'w') as configfile:
+        cfp.write(configfile)
+
 else:
     dt = yesterday
 
