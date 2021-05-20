@@ -19,12 +19,12 @@ yesterday = yesterday.strftime("%Y-%m-%d")
 if cfp.get('date','crawl_date'):
     dt = cfp.get('date','crawl_date')
     t = datetime.datetime.strptime(dt, '%Y-%m-%d')
-    t = t.replace(day=t.day+1)
-    new_t = t.strftime("%Y-%m-%d")
-    cfp.set('date', 'crawl_date', new_t)
-    with open(cfp_path, 'w') as configfile:
-        cfp.write(configfile)
-
+    if t.day < datetime.datetime.now().day:
+        t = t.replace(day=t.day+1)
+        new_t = t.strftime("%Y-%m-%d")
+        cfp.set('date', 'crawl_date', new_t)
+        with open(cfp_path, 'w') as configfile:
+            cfp.write(configfile)
 else:
     dt = yesterday
 
