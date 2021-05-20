@@ -1,0 +1,4 @@
+#xiaohongshu
+type=command
+command = sh /home/panther/weibo-search/exec3.sh
+dependencies=start

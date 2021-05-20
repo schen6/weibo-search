@@ -9,14 +9,22 @@ import os
 import configparser
 cfp = configparser.ConfigParser()
 root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-cfp.read(root_path + '/social.conf')
+cfp_path = root_path + '/social.conf'
+cfp.read(cfp_path)
 
 today = date.today()
 yesterday = today + datetime.timedelta(days=-1)
 yesterday = yesterday.strftime("%Y-%m-%d")
 
-if cfp.get('date','crawl_date'):
-    dt = cfp.get('date','crawl_date')
+if cfp.get('date3','crawl_date'):
+    dt = cfp.get('date3','crawl_date')
+    t = datetime.datetime.strptime(dt, '%Y-%m-%d')
+    if t.date() < datetime.datetime.now().date():
+        t = t + datetime.timedelta(days=1)
+        new_t = t.strftime("%Y-%m-%d")
+        cfp.set('date3', 'crawl_date', new_t)
+        with open(cfp_path, 'w') as configfile:
+            cfp.write(configfile)
 else:
     dt = yesterday
 
@@ -25,7 +33,7 @@ sql = '''
     select cookie from social.weibo_c
 '''
 cookie = client.fetch_data(sql)
-cookie = cookie['cookie'][0]
+cookie = cookie['cookie'][2]
 
 BOT_NAME = 'weibo'
 SPIDER_MODULES = ['weibo.spiders']
