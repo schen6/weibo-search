@@ -30,10 +30,10 @@ else:
 
 client = p.PostgresWriter()
 sql = '''
-    select cookie from social.weibo_c
+    select cookie from social.weibo_c where comp = 'dell'
 '''
 cookie = client.fetch_data(sql)
-cookie = cookie['cookie'][2]
+cookie = cookie['cookie'][0]
 
 BOT_NAME = 'weibo'
 SPIDER_MODULES = ['weibo.spiders']
