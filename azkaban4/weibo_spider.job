@@ -1,0 +1,4 @@
+#xiaohongshu
+type=command
+command = sh /home/panther/weibo-search/exec4.sh
+dependencies=start
