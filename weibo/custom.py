@@ -80,7 +80,7 @@ KEYWORD_LIST = [
     # '兰芝~laneige', #1
     # '倩碧~clinique',
     # '科颜氏~kiehl~kiehls~kiehl\'s',
-    '欧莱雅~loreal',
+    '欧莱雅~loreal'
     # '怡丽丝尔~elixir',
     # '茵芙莎~ipsa',
     # '娇韵诗~clarins',
