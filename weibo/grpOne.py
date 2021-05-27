@@ -14,7 +14,13 @@ cfp.read(cfp_path)
 
 today = date.today()
 yesterday = today + datetime.timedelta(days=-1)
+today = today.strftime("%Y-%m-%d")
 yesterday = yesterday.strftime("%Y-%m-%d")
+
+if datetime.datetime.now().hour <= 12:
+    dt = yesterday
+else:
+    dt = today
 
 # if cfp.get('date','crawl_date'):
 #     dt = cfp.get('date','crawl_date')
@@ -26,7 +32,7 @@ yesterday = yesterday.strftime("%Y-%m-%d")
 #         with open(cfp_path, 'w') as configfile:
 #             cfp.write(configfile)
 # else:
-dt = yesterday
+# dt = yesterday
 
 client = p.PostgresWriter()
 sql = '''
