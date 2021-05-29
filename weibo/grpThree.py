@@ -17,7 +17,7 @@ yesterday = today + datetime.timedelta(days=-1)
 today = today.strftime("%Y-%m-%d")
 yesterday = yesterday.strftime("%Y-%m-%d")
 
-if datetime.datetime.now().hour <= 12:
+if datetime.datetime.now().hour <= 17:
     dt = yesterday
 else:
     dt = today
