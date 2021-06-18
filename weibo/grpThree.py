@@ -94,16 +94,16 @@ KEYWORD_LIST = [
     # '欧舒丹~l\'occitane~loccitane',
     # '悦诗风吟~innisfree',
     # '梦妆~mamonde' #2
-    '玉兰油~olay',
-    '自然堂~chando',
-    '芙丽芳丝~freeplus',
-    '完美日记~(perfect diary)',
-    '花西子~florasis',
-    '玉泽~(dr yu)',
-    '丸美~marubi',
-    '佰草集~herborist',
-    '薇诺娜~winona',
-    '珀莱雅~proya'
+    '玉兰油~olay'
+    # '自然堂~chando',
+    # '芙丽芳丝~freeplus',
+    # '完美日记~(perfect diary)',
+    # '花西子~florasis',
+    # '玉泽~(dr yu)',
+    # '丸美~marubi',
+    # '佰草集~herborist',
+    # '薇诺娜~winona',
+    # '珀莱雅~proya'
 ]  # 或者 KEYWORD_LIST = 'keyword_list.txt'
 # 要搜索的微博类型，0代表搜索全部微博，1代表搜索全部原创微博，2代表热门微博，3代表关注人微博，4代表认证用户微博，5代表媒体微博，6代表观点微博
 WEIBO_TYPE = 0
