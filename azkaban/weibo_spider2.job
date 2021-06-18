@@ -1,4 +1,4 @@
 #xiaohongshu
 type=command
 command = sh /home/panther/weibo-search/exec2.sh
-dependencies=start
+dependencies=weibo_spider
