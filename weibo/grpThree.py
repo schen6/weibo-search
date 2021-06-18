@@ -36,7 +36,7 @@ else:
 
 client = p.PostgresWriter()
 sql = '''
-    select cookie from social.weibo_c where comp = 'mac'
+    select cookie from social.weibo_c where comp = 'lenovo'
 '''
 cookie = client.fetch_data(sql)
 cookie = cookie['cookie'][0]
