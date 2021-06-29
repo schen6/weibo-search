@@ -22,17 +22,15 @@ if datetime.datetime.now().hour <= 17:
 else:
     dt = today
 
-# if cfp.get('date2','crawl_date'):
-#     dt = cfp.get('date2','crawl_date')
-#     t = datetime.datetime.strptime(dt, '%Y-%m-%d')
-#     if t.date() < datetime.datetime.now().date():
-#         t = t + datetime.timedelta(days=1)
-#         new_t = t.strftime("%Y-%m-%d")
-#         cfp.set('date2', 'crawl_date', new_t)
-#         with open(cfp_path, 'w') as configfile:
-#             cfp.write(configfile)
-# else:
-# dt = yesterday
+if cfp.get('date','crawl_date'):
+    dt = cfp.get('date','crawl_date')
+    # t = datetime.datetime.strptime(dt, '%Y-%m-%d')
+    # if t.date() < datetime.datetime.now().date():
+    #     t = t + datetime.timedelta(days=1)
+    #     new_t = t.strftime("%Y-%m-%d")
+    # cfp.set('date', 'crawl_date', '')
+    # with open(cfp_path, 'w') as configfile:
+    #     cfp.write(configfile)
 
 client = p.PostgresWriter()
 sql = '''
