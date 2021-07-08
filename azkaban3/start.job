@@ -1,3 +1,0 @@
-#start.job
-type=command
-command=echo "Let's start!"

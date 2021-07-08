@@ -1,4 +1,0 @@
-# end.job
-type=command
-command=echo "Done!"
-dependencies=weibo_spider
