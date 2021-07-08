@@ -14,6 +14,7 @@ cfp_path = root_path + '/social.conf'
 cfp.read(cfp_path)
 
 st_dt, end_dt = scrapydt.get_dates()
+print(st_dt, end_dt)
 
 if cfp.get('date','crawl_date'):
     dt = cfp.get('date','crawl_date')
