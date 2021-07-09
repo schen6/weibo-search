@@ -1,4 +1,4 @@
 #xiaohongshu
 type=command
-command = sh /home/panther/weibo-search/exec.sh
+command = sh /home/panther/weibo-search/ap_individual.sh
 dependencies=start
