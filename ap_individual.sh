@@ -34,4 +34,14 @@ SCRAPY_PROJECT=sulwhasoo scrapy crawl search
 SCRAPY_PROJECT=whoo scrapy crawl search
 SCRAPY_PROJECT=winona scrapy crawl search
 
+SCRAPY_PROJECT=adolph scrapy crawl search
+SCRAPY_PROJECT=kerastase scrapy crawl search
+SCRAPY_PROJECT=kono scrapy crawl search
+SCRAPY_PROJECT=lolrealhair scrapy crawl search
+SCRAPY_PROJECT=renefurterer scrapy crawl search
+SCRAPY_PROJECT=ryo scrapy crawl search
+SCRAPY_PROJECT=schwarzkopf scrapy crawl search
+SCRAPY_PROJECT=seeyoung scrapy crawl search
+SCRAPY_PROJECT=triptych scrapy crawl search
+
 
