@@ -23,7 +23,7 @@ if cfp.get('date','crawl_date'):
     if t.date() < datetime.datetime.now().date():
         t = t + datetime.timedelta(days=1)
         new_t = t.strftime("%Y-%m-%d")
-    cfp.set('date', 'crawl_date', '')
+    cfp.set('date', 'crawl_date', new_t)
     with open(cfp_path, 'w') as configfile:
         cfp.write(configfile)
 
