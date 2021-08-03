@@ -1,0 +1,4 @@
+#xiaohongshu
+type=command
+command = sh /home/panther/weibo-search/ryo_custom_run.sh
+dependencies=start
