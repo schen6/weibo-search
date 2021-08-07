@@ -13,7 +13,7 @@ root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 cfp_path = root_path + '/social.conf'
 cfp.read(cfp_path)
 
-# st_dt, end_dt = scrapydt.get_dates()
+st_dt, end_dt = scrapydt.get_dates()
 
 if cfp.get('date','crawl_date'):
     dt = cfp.get('date','crawl_date')
@@ -95,7 +95,7 @@ KEYWORD_LIST = [
     # '玉泽~(dr yu)',
     # '丸美~marubi',
     # '佰草集~herborist',
-    'triptych of lune~三谷'
+    'hair recipe~发之食谱'
     # '珀莱雅~proya'
 ]  # 或者 KEYWORD_LIST = 'keyword_list.txt'
 # 要搜索的微博类型，0代表搜索全部微博，1代表搜索全部原创微博，2代表热门微博，3代表关注人微博，4代表认证用户微博，5代表媒体微博，6代表观点微博

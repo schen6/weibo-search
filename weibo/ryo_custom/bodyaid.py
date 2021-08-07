@@ -13,19 +13,17 @@ root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 cfp_path = root_path + '/social.conf'
 cfp.read(cfp_path)
 
-# st_dt, end_dt = scrapydt.get_dates()
+st_dt, end_dt = scrapydt.get_dates()
 
 if cfp.get('date','crawl_date'):
     dt = cfp.get('date','crawl_date')
-    st_dt = dt
-    end_dt = dt
-    t = datetime.datetime.strptime(dt, '%Y-%m-%d')
-    if t.date() < datetime.datetime.now().date():
-        t = t + datetime.timedelta(days=1)
-    new_t = t.strftime("%Y-%m-%d")
-    cfp.set('date', 'crawl_date', new_t)
-    with open(cfp_path, 'w') as configfile:
-        cfp.write(configfile)
+    # t = datetime.datetime.strptime(dt, '%Y-%m-%d')
+    # if t.date() < datetime.datetime.now().date():
+    #     t = t + datetime.timedelta(days=1)
+    #     new_t = t.strftime("%Y-%m-%d")
+    # cfp.set('date', 'crawl_date', '')
+    # with open(cfp_path, 'w') as configfile:
+    #     cfp.write(configfile)
 
 client = p.PostgresWriter()
 sql = '''
@@ -95,7 +93,7 @@ KEYWORD_LIST = [
     # '玉泽~(dr yu)',
     # '丸美~marubi',
     # '佰草集~herborist',
-    'triptych of lune~三谷'
+    'bodyaid~博滴'
     # '珀莱雅~proya'
 ]  # 或者 KEYWORD_LIST = 'keyword_list.txt'
 # 要搜索的微博类型，0代表搜索全部微博，1代表搜索全部原创微博，2代表热门微博，3代表关注人微博，4代表认证用户微博，5代表媒体微博，6代表观点微博
