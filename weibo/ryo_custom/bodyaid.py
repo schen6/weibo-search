@@ -13,10 +13,11 @@ root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 cfp_path = root_path + '/social.conf'
 cfp.read(cfp_path)
 
-st_dt, end_dt = scrapydt.get_dates()
+# st_dt, end_dt = scrapydt.get_dates()
 
 if cfp.get('date','crawl_date'):
-    dt = cfp.get('date','crawl_date')
+    st_dt = cfp.get('date','crawl_date')
+    end_dt = st_dt
     # t = datetime.datetime.strptime(dt, '%Y-%m-%d')
     # if t.date() < datetime.datetime.now().date():
     #     t = t + datetime.timedelta(days=1)
