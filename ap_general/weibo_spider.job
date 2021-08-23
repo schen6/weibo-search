@@ -1,0 +1,4 @@
+#xiaohongshu
+type=command
+command = sh /home/panther/weibo-search/ap_general.sh
+dependencies=start
