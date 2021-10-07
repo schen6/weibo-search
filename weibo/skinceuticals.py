@@ -31,6 +31,7 @@ sql = '''
     select cookie from social.weibo_c where comp = 'lenovo'
 '''
 cookie = client.fetch_data(sql)
+client.client.close()
 cookie = cookie['cookie'][0]
 
 BOT_NAME = 'weibo'
