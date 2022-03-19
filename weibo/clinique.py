@@ -75,7 +75,7 @@ KEYWORD_LIST = [
     # 'skii~sk-ii',
     # '修丽可~skinceuticals',
     # '兰芝~laneige', #1
-    '倩碧~clinique'
+    '倩碧~clinique~@Clinique倩碧'
     # '科颜氏~kiehl~kiehls~kiehl\'s',
     # '欧莱雅~loreal',
     # '怡丽丝尔~elixir',
@@ -97,7 +97,7 @@ KEYWORD_LIST = [
     # '珀莱雅~proya'
 ]  # 或者 KEYWORD_LIST = 'keyword_list.txt'
 # 要搜索的微博类型，0代表搜索全部微博，1代表搜索全部原创微博，2代表热门微博，3代表关注人微博，4代表认证用户微博，5代表媒体微博，6代表观点微博
-WEIBO_TYPE = 0
+WEIBO_TYPE = 1
 # 筛选结果微博中必需包含的内容，0代表不筛选，获取全部微博，1代表搜索包含图片的微博，2代表包含视频的微博，3代表包含音乐的微博，4代表包含短链接的微博
 CONTAIN_TYPE = 0
 # 筛选微博的发布地区，精确到省或直辖市，值不应包含“省”或“市”等字，如想筛选北京市的微博请用“北京”而不是“北京市”，想要筛选安徽省的微博请用“安徽”而不是“安徽省”，可以写多个地区，
