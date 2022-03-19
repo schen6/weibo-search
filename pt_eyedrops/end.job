@@ -1,0 +1,4 @@
+# end.job
+type=command
+command=echo "Done!"
+dependencies=eyedrops
