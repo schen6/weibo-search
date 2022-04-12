@@ -60,7 +60,7 @@ DEFAULT_REQUEST_HEADERS = {
     'sec-fetch-user': '?1',
     'upgrade-insecure-requests': '1',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36',
-    'cookie': cookie
+    'cookie': 'SUB=_2A25PUKrgDeRhGeVP7lES9S_LyDiIHXVsJ5sorDV8PUNbmtAKLXLYkW9NTOX_SiqwiVvInGlnr5LQ8sfHv-kLilLT; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5MKLyf2T7yA4F0FzwHr-es5JpX5KzhUgL.FoepSKe0SK2Ne0B2dJLoIED-xEH81FHWSE-RSbH81FHWSE-R1CXLxKBLBonL1heLxKqL1-eL1hyRB0.t; ALF=1681264176; SSOLoginState=1649728176; webim_unReadCount=%7B%22time%22%3A1649728613423%2C%22dm_pub_total%22%3A0%2C%22chat_group_client%22%3A0%2C%22chat_group_notice%22%3A0%2C%22allcountNum%22%3A12%2C%22msgbox%22%3A0%7D; _s_tentry=weibo.com; Apache=402315877168.653.1649728668816; SINAGLOBAL=402315877168.653.1649728668816'
 }
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,
