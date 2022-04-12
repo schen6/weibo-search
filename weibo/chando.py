@@ -3,9 +3,13 @@ from datetime import date
 import datetime
 import sys
 sys.path.append('/home/panther/')
+sys.path.append('/home/panther/weibo-search')
 import vagabond.crawlers.PostgresWriter as p
 import os
 import vagabond.tools.scrapydt as scrapydt
+# import importlib
+# headers = importlib.import_module("headers")
+
 
 import configparser
 cfp = configparser.ConfigParser()
@@ -47,12 +51,15 @@ DEFAULT_REQUEST_HEADERS = {
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
     'pragma': 'no-cache',
     'sec-ch-ua-mobile': '?0',
+    'referer': 'https://weibo.com/',
+    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="100", "Google Chrome";v="100"',
     'sec-fetch-dest': 'document',
     'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'same-origin',
+    'sec-fetch-site': 'same-site',
+    'sec-ch-ua-platform': '"Windows"',
     'sec-fetch-user': '?1',
     'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36',
     'cookie': cookie
 }
 ITEM_PIPELINES = {
