@@ -46,4 +46,11 @@ SCRAPY_PROJECT=triptych scrapy crawl search
 SCRAPY_PROJECT=bodyaid scrapy crawl search
 SCRAPY_PROJECT=hairrecipe scrapy crawl search
 
+SCRAPY_PROJECT=laprairie scrapy crawl search
+SCRAPY_PROJECT=decorte scrapy crawl search
+SCRAPY_PROJECT=sisley scrapy crawl search
+SCRAPY_PROJECT=valmont scrapy crawl search
+SCRAPY_PROJECT=guerlain scrapy crawl search
+SCRAPY_PROJECT=cpb scrapy crawl search
+
 

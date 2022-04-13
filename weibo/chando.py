@@ -3,9 +3,13 @@ from datetime import date
 import datetime
 import sys
 sys.path.append('/home/panther/')
+sys.path.append('/home/panther/weibo-search')
 import vagabond.crawlers.PostgresWriter as p
 import os
 import vagabond.tools.scrapydt as scrapydt
+# import importlib
+# headers = importlib.import_module("headers")
+
 
 import configparser
 cfp = configparser.ConfigParser()
@@ -47,12 +51,15 @@ DEFAULT_REQUEST_HEADERS = {
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
     'pragma': 'no-cache',
     'sec-ch-ua-mobile': '?0',
+    'referer': 'https://weibo.com/',
+    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="100", "Google Chrome";v="100"',
     'sec-fetch-dest': 'document',
     'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'same-origin',
+    'sec-fetch-site': 'same-site',
+    'sec-ch-ua-platform': '"Windows"',
     'sec-fetch-user': '?1',
     'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36',
     'cookie': cookie
 }
 ITEM_PIPELINES = {
@@ -88,7 +95,7 @@ KEYWORD_LIST = [
     # '悦诗风吟~innisfree',
     # '梦妆~mamonde'
     # '玉兰油~olay',
-    '自然堂~chando'
+    '自然堂~chando~@自然堂'
     # '芙丽芳丝~freeplus',
     # '完美日记~(perfect diary)',
     # '花西子~florasis',
@@ -99,7 +106,7 @@ KEYWORD_LIST = [
     # '珀莱雅~proya'
 ]  # 或者 KEYWORD_LIST = 'keyword_list.txt'
 # 要搜索的微博类型，0代表搜索全部微博，1代表搜索全部原创微博，2代表热门微博，3代表关注人微博，4代表认证用户微博，5代表媒体微博，6代表观点微博
-WEIBO_TYPE = 0
+WEIBO_TYPE = 1
 # 筛选结果微博中必需包含的内容，0代表不筛选，获取全部微博，1代表搜索包含图片的微博，2代表包含视频的微博，3代表包含音乐的微博，4代表包含短链接的微博
 CONTAIN_TYPE = 0
 # 筛选微博的发布地区，精确到省或直辖市，值不应包含“省”或“市”等字，如想筛选北京市的微博请用“北京”而不是“北京市”，想要筛选安徽省的微博请用“安徽”而不是“安徽省”，可以写多个地区，

@@ -4,7 +4,8 @@ import re
 import sys
 from datetime import datetime, timedelta
 from urllib.parse import unquote
-
+sys.path.append('/home/panther/')
+from vagabond.tools.proxy import get_proxy3
 import scrapy
 import weibo.utils.util as util
 from scrapy.exceptions import CloseSpider
@@ -21,23 +22,23 @@ from weibo.items import WeiboItem
 # opt = vars(args)
 
 
-def get_proxy3(proxyUser, proxyPass):
-    # 代理服务器
-    proxyHost = "http-dyn.abuyun.com"
-    proxyPort = "9020"
-
-    # 代理隧道验证信息
-    proxyUser = proxyUser
-    proxyPass = proxyPass
-
-    proxyMeta = "%(user)s:%(pass)s@%(host)s:%(port)s" % {
-        "host": proxyHost,
-        "port": proxyPort,
-        "user": proxyUser,
-        "pass": proxyPass,
-    }
-
-    return proxyMeta
+# def get_proxy3(proxyUser, proxyPass):
+#     # 代理服务器
+#     proxyHost = "http-dyn.abuyun.com"
+#     proxyPort = "9020"
+#
+#     # 代理隧道验证信息
+#     proxyUser = proxyUser
+#     proxyPass = proxyPass
+#
+#     proxyMeta = "%(user)s:%(pass)s@%(host)s:%(port)s" % {
+#         "host": proxyHost,
+#         "port": proxyPort,
+#         "user": proxyUser,
+#         "pass": proxyPass,
+#     }
+#
+#     return proxyMeta
 
 
 class SearchSpider(scrapy.Spider):
@@ -70,7 +71,7 @@ class SearchSpider(scrapy.Spider):
     pymysql_error = False
 
     def start_requests(self):
-        proxy = get_proxy3('H13T90QR94T8X68D', 'F4BCD137F4869682')
+        proxy = get_proxy3()
         proxies = 'http://' + proxy
         start_date = datetime.strptime(self.start_date, '%Y-%m-%d')
         end_date = datetime.strptime(self.end_date,
@@ -126,7 +127,7 @@ class SearchSpider(scrapy.Spider):
             raise CloseSpider()
 
     def parse(self, response):
-        proxy = get_proxy3('H13T90QR94T8X68D', 'F4BCD137F4869682')
+        proxy = get_proxy3()
         proxies = 'http://' + proxy
         base_url = response.meta.get('base_url')
         keyword = response.meta.get('keyword')
@@ -173,7 +174,7 @@ class SearchSpider(scrapy.Spider):
 
     def parse_by_day(self, response):
         """以天为单位筛选"""
-        proxy = get_proxy3('H13T90QR94T8X68D', 'F4BCD137F4869682')
+        proxy = get_proxy3()
         proxies = 'http://' + proxy
         base_url = response.meta.get('base_url')
         keyword = response.meta.get('keyword')
@@ -223,7 +224,7 @@ class SearchSpider(scrapy.Spider):
                                      })
 
     def parse_by_hour(self, response):
-        proxy = get_proxy3('H13T90QR94T8X68D', 'F4BCD137F4869682')
+        proxy = get_proxy3()
         proxies = 'http://' + proxy
 
         """以小时为单位筛选"""
@@ -286,7 +287,7 @@ class SearchSpider(scrapy.Spider):
 
     def parse_by_hour_province(self, response):
         """以小时和直辖市/省为单位筛选"""
-        proxy = get_proxy3('H13T90QR94T8X68D', 'F4BCD137F4869682')
+        proxy = get_proxy3()
         proxies = 'http://' + proxy
         keyword = response.meta.get('keyword')
         is_empty = response.xpath(
@@ -331,7 +332,7 @@ class SearchSpider(scrapy.Spider):
 
     def parse_page(self, response):
         """解析一页搜索结果的信息"""
-        proxy = get_proxy3('H13T90QR94T8X68D', 'F4BCD137F4869682')
+        proxy = get_proxy3()
         proxies = 'http://' + proxy
         keyword = response.meta.get('keyword')
         is_empty = response.xpath(
@@ -420,7 +421,7 @@ class SearchSpider(scrapy.Spider):
                 weibo = WeiboItem()
                 weibo['id'] = sel.xpath('@mid').extract_first()
                 weibo['bid'] = sel.xpath(
-                    '(.//p[@class="from"])[last()]/a[1]/@href').extract_first(
+                    './/p[@class="from"]/a[1]/@href').extract_first(
                     ).split('/')[-1].split('?')[0]
                 weibo['user_id'] = info[0].xpath(
                     'div[2]/a/@href').extract_first().split('?')[0].split(
@@ -464,18 +465,19 @@ class SearchSpider(scrapy.Spider):
                         '2' + weibo['location'], '')
                 weibo['text'] = weibo['text'][2:].replace(' ', '')
                 if is_long_weibo:
-                    weibo['text'] = weibo['text'][:-6]
+                    weibo['text'] = weibo['text'][:-4]
                 weibo['at_users'] = self.get_at_users(txt_sel)
                 weibo['topics'] = self.get_topics(txt_sel)
                 reposts_count = sel.xpath(
-                    './/a[@action-type="feed_list_forward"]/text()'
-                ).extract_first()
+                    './/a[@action-type="feed_list_forward"]/text()').extract()
+                reposts_count = "".join(reposts_count)
                 try:
                     reposts_count = re.findall(r'\d+.*', reposts_count)
                 except TypeError:
-                    print('cookie无效或已过期，请按照'
-                          'https://github.com/dataabc/weibo-search#如何获取cookie'
-                          ' 获取cookie')
+                    print(
+                        "无法解析转发按钮，可能是 1) 网页布局有改动 2) cookie无效或已过期。\n"
+                        "请在 https://github.com/dataabc/weibo-search 查看文档，以解决问题，"
+                    )
                     raise CloseSpider()
                 weibo['reposts_count'] = reposts_count[
                     0] if reposts_count else '0'
@@ -486,15 +488,15 @@ class SearchSpider(scrapy.Spider):
                 weibo['comments_count'] = comments_count[
                     0] if comments_count else '0'
                 attitudes_count = sel.xpath(
-                    '(.//a[@action-type="feed_list_like"])[last()]/em/text()'
-                ).extract_first()
-                weibo['attitudes_count'] = (attitudes_count
-                                            if attitudes_count else '0')
+                    '(.//span[@class="woo-like-count"])[last()]/text()').extract_first()
+                attitudes_count = re.findall(r'\d+.*', attitudes_count)
+                weibo['attitudes_count'] = attitudes_count[
+                    0] if attitudes_count else '0'
                 created_at = sel.xpath(
-                    '(.//p[@class="from"])[last()]/a[1]/text()').extract_first(
+                    './/p[@class="from"]/a[1]/text()').extract_first(
                     ).replace(' ', '').replace('\n', '').split('前')[0]
                 weibo['created_at'] = util.standardize_date(created_at)
-                source = sel.xpath('(.//p[@class="from"])[last()]/a[2]/text()'
+                source = sel.xpath('.//p[@class="from"]/a[2]/text()'
                                    ).extract_first()
                 weibo['source'] = source if source else ''
                 pics = ''
@@ -502,19 +504,18 @@ class SearchSpider(scrapy.Spider):
                     './/div[@class="media media-piclist"]')
                 if is_exist_pic:
                     pics = is_exist_pic[0].xpath('ul[1]/li/img/@src').extract()
-                    pics = [pic[2:] for pic in pics]
+                    pics = [pic[8:] for pic in pics]
                     pics = [
                         re.sub(r'/.*?/', '/large/', pic, 1) for pic in pics
                     ]
-                    pics = ['http://' + pic for pic in pics]
+                    pics = ['https://' + pic for pic in pics]
                 video_url = ''
                 is_exist_video = sel.xpath(
-                    './/div[@class="thumbnail"]/a/@action-data')
+                    './/div[@class="thumbnail"]//video-player').extract_first()
                 if is_exist_video:
-                    video_url = is_exist_video.extract_first()
-                    video_url = unquote(
-                        str(video_url)).split('video_src=//')[-1]
-                    video_url = 'http://' + video_url
+                    video_url = re.findall(r'src:\'(.*?)\'', is_exist_video)[0]
+                    video_url = video_url.replace('&amp;', '&')
+                    video_url = 'http:' + video_url
                 if not retweet_sel:
                     weibo['pics'] = pics
                     weibo['video_url'] = video_url
@@ -550,11 +551,11 @@ class SearchSpider(scrapy.Spider):
                             '2' + retweet['location'], '')
                     retweet['text'] = retweet['text'][2:].replace(' ', '')
                     if is_long_retweet:
-                        retweet['text'] = retweet['text'][:-6]
+                        retweet['text'] = retweet['text'][:-4]
                     retweet['at_users'] = self.get_at_users(retweet_txt_sel)
                     retweet['topics'] = self.get_topics(retweet_txt_sel)
                     reposts_count = retweet_sel[0].xpath(
-                        './/ul[@class="act s-fr"]/li/a[1]/text()'
+                        './/ul[@class="act s-fr"]/li[1]/a[1]/text()'
                     ).extract_first()
                     reposts_count = re.findall(r'\d+.*', reposts_count)
                     retweet['reposts_count'] = reposts_count[
@@ -566,10 +567,11 @@ class SearchSpider(scrapy.Spider):
                     retweet['comments_count'] = comments_count[
                         0] if comments_count else '0'
                     attitudes_count = retweet_sel[0].xpath(
-                        './/a[@action-type="feed_list_like"]/em/text()'
+                        './/a[@class="woo-box-flex woo-box-alignCenter woo-box-justifyCenter"]//span[@class="woo-like-count"]/text()'
                     ).extract_first()
-                    retweet['attitudes_count'] = (attitudes_count
-                                                  if attitudes_count else '0')
+                    attitudes_count = re.findall(r'\d+.*', attitudes_count)
+                    retweet['attitudes_count'] = attitudes_count[
+                        0] if attitudes_count else '0'
                     created_at = retweet_sel[0].xpath(
                         './/p[@class="from"]/a[1]/text()').extract_first(
                         ).replace(' ', '').replace('\n', '').split('前')[0]

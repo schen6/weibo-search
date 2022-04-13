@@ -25,13 +25,11 @@ if cfp.get('date','crawl_date'):
     # with open(cfp_path, 'w') as configfile:
     #     cfp.write(configfile)
 
-
 client = p.PostgresWriter()
 sql = '''
     select cookie from social.weibo_c where comp = 'lenovo'
 '''
 cookie = client.fetch_data(sql)
-client.client.close()
 cookie = cookie['cookie'][0]
 
 BOT_NAME = 'weibo'
@@ -67,36 +65,9 @@ ITEM_PIPELINES = {
 # 要搜索的关键词列表，可写多个, 值可以是由关键词或话题组成的列表，也可以是包含关键词的txt文件路径，
 # 如'keyword_list.txt'，txt文件中每个关键词占一行
 KEYWORD_LIST = [
-    # '雪花秀~sulwhasoo',
-    # '雅诗兰黛~(estee lauder)',
-    # 'Whoo',
-    # '资生堂~shiseido',
-    # '兰蔻~lancome',
-    # '赫莲娜~(helena rubinstein)',
-    # '海蓝之谜~lamer~(la mer)',
-    # 'skii~sk-ii',
-    # '修丽可~skinceuticals',
-    '兰芝~laneige~@兰芝中国'
-    # '倩碧~clinique',
-    # '科颜氏~kiehl~kiehls~kiehl\'s',
-    # '欧莱雅~loreal',
-    # '怡丽丝尔~elixir',
-    # '茵芙莎~ipsa',
-    # '娇韵诗~clarins',
-    # '悦木之源~origins -金钟炫',
-    # '欧舒丹~l\'occitane~loccitane',
-    # '悦诗风吟~innisfree',
-    # '梦妆~mamonde',
-    # '玉兰油~olay',
-    # '自然堂~chando',
-    # '芙丽芳丝~freeplus',
-    # '完美日记~(perfect diary)',
-    # '花西子~florasis',
-    # '玉泽~(dr yu)',
-    # '丸美~marubi',
-    # '佰草集~herborist',
-    # '薇诺娜~winona',
-    # '珀莱雅~proya'
+
+    'valmont~@VALMONT法儿曼~法儿曼~法尔曼'
+
 ]  # 或者 KEYWORD_LIST = 'keyword_list.txt'
 # 要搜索的微博类型，0代表搜索全部微博，1代表搜索全部原创微博，2代表热门微博，3代表关注人微博，4代表认证用户微博，5代表媒体微博，6代表观点微博
 WEIBO_TYPE = 1
