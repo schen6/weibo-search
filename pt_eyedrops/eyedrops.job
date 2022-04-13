@@ -1,4 +1,4 @@
 #xiaohongshu
 type=command
-command = sh /home/panther/weibo-search/pt_eyedrops.sh
+command = sh /home/panther/weibo-search/debeers.sh
 dependencies=start
