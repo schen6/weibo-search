@@ -90,8 +90,8 @@ class SearchSpider(scrapy.Spider):
                                      callback=self.parse,
                                      meta={
                                          'base_url': base_url,
-                                         'keyword': keyword,
-                                         'proxy': proxies
+                                         'keyword': keyword
+                                         # 'proxy': proxies
                                      })
             else:
                 for region in self.regions.values():
@@ -107,8 +107,8 @@ class SearchSpider(scrapy.Spider):
                                          meta={
                                              'base_url': base_url,
                                              'keyword': keyword,
-                                             'province': region,
-                                             'proxy': proxies
+                                             'province': region
+                                             # 'proxy': proxies
                                          })
 
     def check_environment(self):
@@ -148,8 +148,9 @@ class SearchSpider(scrapy.Spider):
                 next_url = self.base_url + next_url
                 yield scrapy.Request(url=next_url,
                                      callback=self.parse_page,
-                                     meta={'keyword': keyword,
-                                           'proxy': proxies})
+                                     meta={'keyword': keyword
+                                           # 'proxy': proxies
+                                           })
         else:
             start_date = datetime.strptime(self.start_date, '%Y-%m-%d')
             end_date = datetime.strptime(self.end_date, '%Y-%m-%d')
@@ -168,7 +169,7 @@ class SearchSpider(scrapy.Spider):
                                          'base_url': base_url,
                                          'keyword': keyword,
                                          'province': province,
-                                         'proxy': proxies,
+                                         # 'proxy': proxies,
                                          'date': start_str[:-2]
                                      })
 
@@ -196,7 +197,9 @@ class SearchSpider(scrapy.Spider):
                 next_url = self.base_url + next_url
                 yield scrapy.Request(url=next_url,
                                      callback=self.parse_page,
-                                     meta={'keyword': keyword,'proxy': proxies})
+                                     meta={'keyword': keyword
+                                         # ,'proxy': proxies
+                                           })
         else:
             start_date_str = date + '-0'
             start_date = datetime.strptime(start_date_str, '%Y-%m-%d-%H')
@@ -219,8 +222,9 @@ class SearchSpider(scrapy.Spider):
                                          'keyword': keyword,
                                          'province': province,
                                          'start_time': start_str,
-                                         'end_time': end_str,
-                                         'proxy': proxies
+                                         # 'proxy': proxies,
+                                         'end_time': end_str
+
                                      })
 
     def parse_by_hour(self, response):
@@ -244,7 +248,9 @@ class SearchSpider(scrapy.Spider):
                 next_url = self.base_url + next_url
                 yield scrapy.Request(url=next_url,
                                      callback=self.parse_page,
-                                     meta={'keyword': keyword,'proxy': proxies})
+                                     meta={'keyword': keyword
+                                         # ,'proxy': proxies
+                                           })
 
         # keyword = response.meta.get('keyword')
         # is_empty = response.xpath(
@@ -309,7 +315,9 @@ class SearchSpider(scrapy.Spider):
                 next_url = self.base_url + next_url
                 yield scrapy.Request(url=next_url,
                                      callback=self.parse_page,
-                                     meta={'keyword': keyword,'proxy': proxies})
+                                     meta={'keyword': keyword
+                                         # ,'proxy': proxies
+                                           })
         else:
             for city in province['city'].values():
                 url = ('https://s.weibo.com/weibo?q={}&region=custom:{}:{}'
@@ -326,8 +334,9 @@ class SearchSpider(scrapy.Spider):
                                          'start_time': start_time,
                                          'end_time': end_time,
                                          'province': province,
-                                         'city': city,
-                                         'proxy': proxies
+                                         # 'proxy': proxies,
+                                         'city': city
+
                                      })
 
     def parse_page(self, response):
@@ -349,7 +358,9 @@ class SearchSpider(scrapy.Spider):
                 next_url = self.base_url + next_url
                 yield scrapy.Request(url=next_url,
                                      callback=self.parse_page,
-                                     meta={'keyword': keyword,'proxy': proxies})
+                                     meta={'keyword': keyword
+                                         # ,'proxy': proxies
+                                           })
 
     def get_article_url(self, selector):
         """获取微博头条文章url"""
