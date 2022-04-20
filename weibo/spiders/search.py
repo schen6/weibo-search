@@ -5,7 +5,8 @@ import sys
 from datetime import datetime, timedelta
 from urllib.parse import unquote
 sys.path.append('/home/panther/')
-from vagabond.tools.proxy import get_proxy3
+import vagabond.tools.proxy.get_zhima_proxy_single as get_proxy3
+
 import scrapy
 import weibo.utils.util as util
 from scrapy.exceptions import CloseSpider
