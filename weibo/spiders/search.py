@@ -5,7 +5,7 @@ import sys
 from datetime import datetime, timedelta
 from urllib.parse import unquote
 sys.path.append('/home/panther/')
-from vagabond.tools.proxy import get_zhima_proxy_single as get_proxy3
+from vagabond.tools.proxy import get_proxy3
 
 import scrapy
 import weibo.utils.util as util
@@ -81,7 +81,6 @@ class SearchSpider(scrapy.Spider):
         end_str = end_date.strftime('%Y-%m-%d') + '-0'
         for keyword in self.keyword_list:
             print(keyword + ' ' + start_str + ' ' + end_str)
-            print(proxies)
             if not self.settings.get('REGION') or '全部' in self.settings.get(
                     'REGION'):
                 base_url = 'https://s.weibo.com/weibo?q=%s' % keyword
