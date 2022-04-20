@@ -49,7 +49,7 @@ DOWNLOAD_DELAY = 10
 DEFAULT_REQUEST_HEADERS = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
-    'cookie': 'SINAGLOBAL=2283288986157.812.1620138637505; UOR=,,login.sina.com.cn; login_sid_t=eecd75227f92daac37d0cc94572adee3; cross_origin_proto=SSL; PC_TOKEN=812807dd90; _s_tentry=weibo.com; Apache=75879342270.72379.1650469085999; ULV=1650469086004:4:1:1:75879342270.72379.1650469085999:1623986530772; ALF=1682005119; SSOLoginState=1650469119; SCF=AnOmuGbZeJEZ5BYcvbg4Zp5HxdVOWeFH__uEQCJcw9fA5LsNM0enMjyq92E705LVxtylCMuCbmlg5nyNWCeGRJw.; SUB=_2A25PZFlQDeRhGeRH7lMS8i_PzTyIHXVsEM2YrDV8PUNbmtB-LUfzkW9NTcB1liQ1biNm0s4ksam0XW5cdOLX9aaA; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWWKZWT5uMYkdzZ988zG-YY5JpX5KzhUgL.Foz4SK20eo20So52dJLoIp7LxKML1KBLBKnLxKqL1hnLBoM41h2NeoqceKz0; wvr=6; webim_unReadCount=%7B%22time%22%3A1650469124986%2C%22dm_pub_total%22%3A48%2C%22chat_group_client%22%3A0%2C%22chat_group_notice%22%3A0%2C%22allcountNum%22%3A108%2C%22msgbox%22%3A0%7D; WBStorage=4d96c54e|undefined'
+    'cookie': cookie
 }
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,
