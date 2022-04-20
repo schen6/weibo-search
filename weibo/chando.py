@@ -41,16 +41,15 @@ cookie = cookie['cookie'][0]
 BOT_NAME = 'weibo'
 SPIDER_MODULES = ['weibo.spiders']
 NEWSPIDER_MODULE = 'weibo.spiders'
-COOKIES_ENABLED = True
+COOKIES_ENABLED = False
 TELNETCONSOLE_ENABLED = False
 LOG_LEVEL = 'ERROR'
 # 访问完一个页面再访问下一个时需要等待的时间，默认为10秒
 DOWNLOAD_DELAY = 10
 DEFAULT_REQUEST_HEADERS = {
-    'Accept':
-    'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
-    'cookie': cookie
+    'cookie': 'SINAGLOBAL=2283288986157.812.1620138637505; UOR=,,login.sina.com.cn; login_sid_t=eecd75227f92daac37d0cc94572adee3; cross_origin_proto=SSL; PC_TOKEN=812807dd90; _s_tentry=weibo.com; Apache=75879342270.72379.1650469085999; ULV=1650469086004:4:1:1:75879342270.72379.1650469085999:1623986530772; ALF=1682005119; SSOLoginState=1650469119; SCF=AnOmuGbZeJEZ5BYcvbg4Zp5HxdVOWeFH__uEQCJcw9fA5LsNM0enMjyq92E705LVxtylCMuCbmlg5nyNWCeGRJw.; SUB=_2A25PZFlQDeRhGeRH7lMS8i_PzTyIHXVsEM2YrDV8PUNbmtB-LUfzkW9NTcB1liQ1biNm0s4ksam0XW5cdOLX9aaA; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWWKZWT5uMYkdzZ988zG-YY5JpX5KzhUgL.Foz4SK20eo20So52dJLoIp7LxKML1KBLBKnLxKqL1hnLBoM41h2NeoqceKz0; wvr=6; webim_unReadCount=%7B%22time%22%3A1650469124986%2C%22dm_pub_total%22%3A48%2C%22chat_group_client%22%3A0%2C%22chat_group_notice%22%3A0%2C%22allcountNum%22%3A108%2C%22msgbox%22%3A0%7D; WBStorage=4d96c54e|undefined'
 }
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,
@@ -85,7 +84,7 @@ KEYWORD_LIST = [
     # '悦诗风吟~innisfree',
     # '梦妆~mamonde'
     # '玉兰油~olay',
-    '自然堂~chando' #~@自然堂
+    '自然堂~chando~@自然堂'
     # '芙丽芳丝~freeplus',
     # '完美日记~(perfect diary)',
     # '花西子~florasis',
@@ -103,9 +102,9 @@ CONTAIN_TYPE = 0
 # 具体支持的地名见region.py文件，注意只支持省或直辖市的名字，省下面的市名及直辖市下面的区县名不支持，不筛选请用”全部“
 REGION = ['全部']
 # 搜索的起始日期，为yyyy-mm-dd形式，搜索结果包含该日期
-START_DATE = '2022-04-01'  # '2021-04-17'
+START_DATE = st_dt  # '2021-04-17'
 # 搜索的终止日期，为yyyy-mm-dd形式，搜索结果包含该日期
-END_DATE = '2022-04-20'  # '2021-04-18'
+END_DATE = end_dt  # '2021-04-18'
 # 进一步细分搜索的阈值，若结果页数大于等于该值，则认为结果没有完全展示，细分搜索条件重新搜索以获取更多微博。数值越大速度越快，也越有可能漏掉微博；数值越小速度越慢，获取的微博就越多。
 # 建议数值大小设置在40到50之间。
 FURTHER_THRESHOLD = 46
