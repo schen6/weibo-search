@@ -56,10 +56,10 @@ DEFAULT_REQUEST_HEADERS = {
     'sec-fetch-dest': 'document',
     'sec-fetch-mode': 'navigate',
     'sec-fetch-site': 'same-site',
-    'sec-ch-ua-platform': '"Windows"',
+    'sec-ch-ua-platform': '"Linux"',
     'sec-fetch-user': '?1',
     'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36',
+    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36',
     'cookie': cookie
 }
 ITEM_PIPELINES = {
