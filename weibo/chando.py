@@ -85,7 +85,7 @@ KEYWORD_LIST = [
     # '悦诗风吟~innisfree',
     # '梦妆~mamonde'
     # '玉兰油~olay',
-    '自然堂~chando~@自然堂'
+    '自然堂~chando' #~@自然堂
     # '芙丽芳丝~freeplus',
     # '完美日记~(perfect diary)',
     # '花西子~florasis',
