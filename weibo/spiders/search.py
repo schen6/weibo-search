@@ -4,6 +4,8 @@ import re
 import sys
 from datetime import datetime, timedelta
 from urllib.parse import unquote
+sys.path.append('/home/panther/')
+from vagabond.tools.proxy import get_zhima_proxy_single as get_proxy3
 
 import scrapy
 import weibo.utils.util as util
@@ -21,23 +23,23 @@ from weibo.items import WeiboItem
 # opt = vars(args)
 
 
-def get_proxy3(proxyUser, proxyPass):
-    # 代理服务器
-    proxyHost = "http-dyn.abuyun.com"
-    proxyPort = "9020"
-
-    # 代理隧道验证信息
-    proxyUser = proxyUser
-    proxyPass = proxyPass
-
-    proxyMeta = "%(user)s:%(pass)s@%(host)s:%(port)s" % {
-        "host": proxyHost,
-        "port": proxyPort,
-        "user": proxyUser,
-        "pass": proxyPass,
-    }
-
-    return proxyMeta
+# def get_proxy3(proxyUser, proxyPass):
+#     # 代理服务器
+#     proxyHost = "http-dyn.abuyun.com"
+#     proxyPort = "9020"
+#
+#     # 代理隧道验证信息
+#     proxyUser = proxyUser
+#     proxyPass = proxyPass
+#
+#     proxyMeta = "%(user)s:%(pass)s@%(host)s:%(port)s" % {
+#         "host": proxyHost,
+#         "port": proxyPort,
+#         "user": proxyUser,
+#         "pass": proxyPass,
+#     }
+#
+#     return proxyMeta
 
 
 class SearchSpider(scrapy.Spider):
@@ -70,7 +72,7 @@ class SearchSpider(scrapy.Spider):
     pymysql_error = False
 
     def start_requests(self):
-        proxy = get_proxy3('H13T90QR94T8X68D', 'F4BCD137F4869682')
+        proxy = get_proxy3()
         proxies = 'http://' + proxy
         start_date = datetime.strptime(self.start_date, '%Y-%m-%d')
         end_date = datetime.strptime(self.end_date,
@@ -79,6 +81,7 @@ class SearchSpider(scrapy.Spider):
         end_str = end_date.strftime('%Y-%m-%d') + '-0'
         for keyword in self.keyword_list:
             print(keyword + ' ' + start_str + ' ' + end_str)
+            print(proxies)
             if not self.settings.get('REGION') or '全部' in self.settings.get(
                     'REGION'):
                 base_url = 'https://s.weibo.com/weibo?q=%s' % keyword
@@ -126,7 +129,7 @@ class SearchSpider(scrapy.Spider):
             raise CloseSpider()
 
     def parse(self, response):
-        proxy = get_proxy3('H13T90QR94T8X68D', 'F4BCD137F4869682')
+        proxy = get_proxy3()
         proxies = 'http://' + proxy
         base_url = response.meta.get('base_url')
         keyword = response.meta.get('keyword')
@@ -173,7 +176,7 @@ class SearchSpider(scrapy.Spider):
 
     def parse_by_day(self, response):
         """以天为单位筛选"""
-        proxy = get_proxy3('H13T90QR94T8X68D', 'F4BCD137F4869682')
+        proxy = get_proxy3()
         proxies = 'http://' + proxy
         base_url = response.meta.get('base_url')
         keyword = response.meta.get('keyword')
@@ -223,7 +226,7 @@ class SearchSpider(scrapy.Spider):
                                      })
 
     def parse_by_hour(self, response):
-        proxy = get_proxy3('H13T90QR94T8X68D', 'F4BCD137F4869682')
+        proxy = get_proxy3()
         proxies = 'http://' + proxy
 
         """以小时为单位筛选"""
@@ -286,7 +289,7 @@ class SearchSpider(scrapy.Spider):
 
     def parse_by_hour_province(self, response):
         """以小时和直辖市/省为单位筛选"""
-        proxy = get_proxy3('H13T90QR94T8X68D', 'F4BCD137F4869682')
+        proxy = get_proxy3()
         proxies = 'http://' + proxy
         keyword = response.meta.get('keyword')
         is_empty = response.xpath(
@@ -331,7 +334,7 @@ class SearchSpider(scrapy.Spider):
 
     def parse_page(self, response):
         """解析一页搜索结果的信息"""
-        proxy = get_proxy3('H13T90QR94T8X68D', 'F4BCD137F4869682')
+        proxy = get_proxy3()
         proxies = 'http://' + proxy
         keyword = response.meta.get('keyword')
         is_empty = response.xpath(
