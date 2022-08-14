@@ -91,8 +91,8 @@ class SearchSpider(scrapy.Spider):
                                      callback=self.parse,
                                      meta={
                                          'base_url': base_url,
-                                         'keyword': keyword,
-                                         'proxy': proxies
+                                         'keyword': keyword
+                                         # 'proxy': proxies
                                      })
             else:
                 for region in self.regions.values():
@@ -108,8 +108,8 @@ class SearchSpider(scrapy.Spider):
                                          meta={
                                              'base_url': base_url,
                                              'keyword': keyword,
-                                             'province': region,
-                                             'proxy': proxies
+                                             'province': region
+                                             # 'proxy': proxies
                                          })
 
     def check_environment(self):
