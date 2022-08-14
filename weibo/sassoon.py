@@ -3,13 +3,9 @@ from datetime import date
 import datetime
 import sys
 sys.path.append('/home/panther/')
-sys.path.append('/home/panther/weibo-search')
 import vagabond.crawlers.PostgresWriter as p
 import os
 import vagabond.tools.scrapydt as scrapydt
-# import importlib
-# headers = importlib.import_module("headers")
-
 
 import configparser
 cfp = configparser.ConfigParser()
@@ -18,7 +14,6 @@ cfp_path = root_path + '/social.conf'
 cfp.read(cfp_path)
 
 st_dt, end_dt = scrapydt.get_dates()
-print(st_dt, end_dt)
 
 if cfp.get('date','crawl_date'):
     dt = cfp.get('date','crawl_date')
@@ -35,7 +30,6 @@ sql = '''
     select cookie from social.weibo_c where comp = 'lenovo'
 '''
 cookie = client.fetch_data(sql)
-client.client.close()
 cookie = cookie['cookie'][0]
 
 BOT_NAME = 'weibo'
@@ -45,15 +39,19 @@ COOKIES_ENABLED = False
 TELNETCONSOLE_ENABLED = False
 LOG_LEVEL = 'ERROR'
 # 访问完一个页面再访问下一个时需要等待的时间，默认为10秒
-DOWNLOAD_DELAY = 10
+DOWNLOAD_DELAY = 2
 DEFAULT_REQUEST_HEADERS = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'Accept-Language': 'en-US,en;q=0.9',
-    # 'sec-ch-ua-platform': '"Linux"',
-    # 'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
-    # 'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+    'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
+    'pragma': 'no-cache',
+    'sec-ch-ua-mobile': '?0',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36',
     'cookie': cookie
-
 }
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,
@@ -67,36 +65,9 @@ ITEM_PIPELINES = {
 # 要搜索的关键词列表，可写多个, 值可以是由关键词或话题组成的列表，也可以是包含关键词的txt文件路径，
 # 如'keyword_list.txt'，txt文件中每个关键词占一行
 KEYWORD_LIST = [
-    # '雪花秀~sulwhasoo',
-    # '雅诗兰黛~(estee lauder)',
-    # 'Whoo',
-    # '资生堂~shiseido',
-    # '兰蔻~lancome'
-    # '赫莲娜~(helena rubinstein)',
-    # '海蓝之谜~lamer~(la mer)',
-    # 'skii~sk-ii',
-    # '修丽可~skinceuticals',
-    # '兰芝~laneige', #1
-    # '倩碧~clinique',
-    # '科颜氏~kiehl~kiehls~kiehl\'s',
-    # '欧莱雅~loreal',
-    # '怡丽丝尔~elixir',
-    # '茵芙莎~ipsa',
-    # '娇韵诗~clarins',
-    # '悦木之源~origins -金钟炫',
-    # '欧舒丹~l\'occitane~loccitane',
-    # '悦诗风吟~innisfree',
-    # '梦妆~mamonde'
-    # '玉兰油~olay',
-    '自然堂~chando~@自然堂'
-    # '芙丽芳丝~freeplus',
-    # '完美日记~(perfect diary)',
-    # '花西子~florasis',
-    # '玉泽~(dr yu)',
-    # '丸美~marubi',
-    # '佰草集~herborist',
-    # '薇诺娜~winona',
-    # '珀莱雅~proya'
+
+    '沙宣~sassoon~@沙宣VidalSassoon'
+
 ]  # 或者 KEYWORD_LIST = 'keyword_list.txt'
 # 要搜索的微博类型，0代表搜索全部微博，1代表搜索全部原创微博，2代表热门微博，3代表关注人微博，4代表认证用户微博，5代表媒体微博，6代表观点微博
 WEIBO_TYPE = 1

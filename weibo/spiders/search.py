@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from urllib.parse import unquote
 sys.path.append('/home/panther/')
 from vagabond.tools.proxy import get_proxy3
+
 import scrapy
 import weibo.utils.util as util
 from scrapy.exceptions import CloseSpider
@@ -86,6 +87,7 @@ class SearchSpider(scrapy.Spider):
                 url = base_url + self.weibo_type
                 url += self.contain_type
                 url += '&timescope=custom:{}:{}'.format(start_str, end_str)
+                # print(url)
                 yield scrapy.Request(url=url,
                                      callback=self.parse,
                                      meta={
