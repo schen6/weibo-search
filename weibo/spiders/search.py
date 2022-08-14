@@ -87,13 +87,13 @@ class SearchSpider(scrapy.Spider):
                 url = base_url + self.weibo_type
                 url += self.contain_type
                 url += '&timescope=custom:{}:{}'.format(start_str, end_str)
-                print(url)
+                # print(url)
                 yield scrapy.Request(url=url,
                                      callback=self.parse,
                                      meta={
                                          'base_url': base_url,
-                                         'keyword': keyword
-                                         # 'proxy': proxies
+                                         'keyword': keyword,
+                                         'proxy': proxies
                                      })
             else:
                 for region in self.regions.values():
@@ -109,8 +109,8 @@ class SearchSpider(scrapy.Spider):
                                          meta={
                                              'base_url': base_url,
                                              'keyword': keyword,
-                                             'province': region
-                                             # 'proxy': proxies
+                                             'province': region,
+                                             'proxy': proxies
                                          })
 
     def check_environment(self):
