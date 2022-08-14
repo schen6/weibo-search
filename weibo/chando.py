@@ -52,7 +52,8 @@ DEFAULT_REQUEST_HEADERS = {
     'sec-ch-ua-platform': '"Linux"',
     'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
     'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
-    'cookie': '_s_tentry=weibo.com; Apache=1551423395571.3875.1660202074842; SINAGLOBAL=1551423395571.3875.1660202074842; ULV=1660202074845:1:1:1:1551423395571.3875.1660202074842:; login_sid_t=dc1a08ff3dfe92dfe942513b8ba97d09; cross_origin_proto=SSL; ALF=1691989247; SSOLoginState=1660453248; SUB=_2A25P_PHQDeRhGeRH7lMS8i_PzTyIHXVsiGQYrDV8PUNbmtANLRLWkW9NTcB1li0K8HZzVSgOPxy0p9oxYJ57fzOc; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWWKZWT5uMYkdzZ988zG-YY5JpX5KzhUgL.Foz4SK20eo20So52dJLoIp7LxKML1KBLBKnLxKqL1hnLBoM41h2NeoqceKz0; wvr=6; webim_unReadCount=%7B%22time%22%3A1660453253674%2C%22dm_pub_total%22%3A55%2C%22chat_group_client%22%3A0%2C%22chat_group_notice%22%3A0%2C%22allcountNum%22%3A109%2C%22msgbox%22%3A0%7D; PC_TOKEN=e3ee9c9741; WBStorage=4d96c54e|undefined'
+    'cookie': '_s_tentry=weibo.com; Apache=1551423395571.3875.1660202074842; SINAGLOBAL=1551423395571.3875.1660202074842; ULV=1660202074845:1:1:1:1551423395571.3875.1660202074842:; login_sid_t=dc1a08ff3dfe92dfe942513b8ba97d09; cross_origin_proto=SSL; webim_unReadCount=%7B%22time%22%3A1660453253674%2C%22dm_pub_total%22%3A55%2C%22chat_group_client%22%3A0%2C%22chat_group_notice%22%3A0%2C%22allcountNum%22%3A109%2C%22msgbox%22%3A0%7D; PC_TOKEN=e2d2a465b1; WBStorage=4d96c54e|undefined; UOR=,,login.sina.com.cn; SUB=_2A25P_P1YDeRhGeFI6VMX-SjLyTyIHXVsiGmQrDV8PUNbmtANLVHXkW9NfVdNcGnFpIEdE-i9F8Fk8yOG0sKKiTAB; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WW0wi6oTHQ0fhClS4.gj9hi5JpX5KzhUgL.FoMceo2c1KqNeo52dJLoIp7LxKML1KBLBKnLxKqL1hnLBoMNSozpSo.cS0z7; ALF=1691992200; SSOLoginState=1660456200'
+
 }
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,
