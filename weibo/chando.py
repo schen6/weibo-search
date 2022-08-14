@@ -41,7 +41,7 @@ cookie = cookie['cookie'][0]
 BOT_NAME = 'weibo'
 SPIDER_MODULES = ['weibo.spiders']
 NEWSPIDER_MODULE = 'weibo.spiders'
-COOKIES_ENABLED = True
+COOKIES_ENABLED = False
 TELNETCONSOLE_ENABLED = False
 LOG_LEVEL = 'ERROR'
 # 访问完一个页面再访问下一个时需要等待的时间，默认为10秒
