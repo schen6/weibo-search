@@ -87,6 +87,7 @@ class SearchSpider(scrapy.Spider):
                 url = base_url + self.weibo_type
                 url += self.contain_type
                 url += '&timescope=custom:{}:{}'.format(start_str, end_str)
+                print(url)
                 yield scrapy.Request(url=url,
                                      callback=self.parse,
                                      meta={
