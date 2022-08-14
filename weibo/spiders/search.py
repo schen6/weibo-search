@@ -423,7 +423,7 @@ class SearchSpider(scrapy.Spider):
                 weibo = WeiboItem()
                 weibo['id'] = sel.xpath('@mid').extract_first()
                 weibo['bid'] = sel.xpath(
-                    './/p[@class="from"]/a[1]/@href').extract_first(
+                    './/div[@class="from"]/a[1]/@href').extract_first(
                     ).split('/')[-1].split('?')[0]
                 weibo['user_id'] = info[0].xpath(
                     'div[2]/a/@href').extract_first().split('?')[0].split(
@@ -495,10 +495,10 @@ class SearchSpider(scrapy.Spider):
                 weibo['attitudes_count'] = attitudes_count[
                     0] if attitudes_count else '0'
                 created_at = sel.xpath(
-                    './/p[@class="from"]/a[1]/text()').extract_first(
+                    './/div[@class="from"]/a[1]/text()').extract_first(
                     ).replace(' ', '').replace('\n', '').split('前')[0]
                 weibo['created_at'] = util.standardize_date(created_at)
-                source = sel.xpath('.//p[@class="from"]/a[2]/text()'
+                source = sel.xpath('.//div[@class="from"]/a[2]/text()'
                                    ).extract_first()
                 weibo['source'] = source if source else ''
                 pics = ''
@@ -532,7 +532,7 @@ class SearchSpider(scrapy.Spider):
                         './/a[@action-type="feed_list_like"]/@action-data'
                     ).extract_first()[4:]
                     retweet['bid'] = retweet_sel[0].xpath(
-                        './/p[@class="from"]/a/@href').extract_first().split(
+                        './/div[@class="from"]/a/@href').extract_first().split(
                             '/')[-1].split('?')[0]
                     info = retweet_sel[0].xpath(
                         './/div[@node-type="feed_list_forwardContent"]/a[1]'
@@ -575,11 +575,11 @@ class SearchSpider(scrapy.Spider):
                     retweet['attitudes_count'] = attitudes_count[
                         0] if attitudes_count else '0'
                     created_at = retweet_sel[0].xpath(
-                        './/p[@class="from"]/a[1]/text()').extract_first(
+                        './/div[@class="from"]/a[1]/text()').extract_first(
                         ).replace(' ', '').replace('\n', '').split('前')[0]
                     retweet['created_at'] = util.standardize_date(created_at)
                     source = retweet_sel[0].xpath(
-                        './/p[@class="from"]/a[2]/text()').extract_first()
+                        './/div[@class="from"]/a[2]/text()').extract_first()
                     retweet['source'] = source if source else ''
                     retweet['pics'] = pics
                     retweet['video_url'] = video_url
