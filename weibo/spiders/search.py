@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from urllib.parse import unquote
 sys.path.append('/home/panther/')
 from vagabond.tools.proxy import get_proxy3
+from vagabond.tools.proxy_manager import run, get_proxies, get_zhima_proxy
 
 import scrapy
 import weibo.utils.util as util
@@ -71,9 +72,14 @@ class SearchSpider(scrapy.Spider):
     mysql_error = False
     pymysql_error = False
 
+    # use new proxy
+    run()
+    proxies_list = get_proxies()
+
     def start_requests(self):
-        proxy = get_proxy3()
-        proxies = 'http://' + proxy
+        # proxy = get_proxy3()
+        # proxies = 'http://' + proxy
+        proxies = get_zhima_proxy(self.proxies_list, format='bare')
         start_date = datetime.strptime(self.start_date, '%Y-%m-%d')
         end_date = datetime.strptime(self.end_date,
                                      '%Y-%m-%d') + timedelta(days=1)
@@ -129,8 +135,9 @@ class SearchSpider(scrapy.Spider):
             raise CloseSpider()
 
     def parse(self, response):
-        proxy = get_proxy3()
-        proxies = 'http://' + proxy
+        # proxy = get_proxy3()
+        # proxies = 'http://' + proxy
+        proxies = get_zhima_proxy(self.proxies_list, format='bare')
         base_url = response.meta.get('base_url')
         keyword = response.meta.get('keyword')
         province = response.meta.get('province')
@@ -176,8 +183,9 @@ class SearchSpider(scrapy.Spider):
 
     def parse_by_day(self, response):
         """以天为单位筛选"""
-        proxy = get_proxy3()
-        proxies = 'http://' + proxy
+        # proxy = get_proxy3()
+        # proxies = 'http://' + proxy
+        proxies = get_zhima_proxy(self.proxies_list, format='bare')
         base_url = response.meta.get('base_url')
         keyword = response.meta.get('keyword')
         province = response.meta.get('province')
@@ -226,9 +234,9 @@ class SearchSpider(scrapy.Spider):
                                      })
 
     def parse_by_hour(self, response):
-        proxy = get_proxy3()
-        proxies = 'http://' + proxy
-
+        # proxy = get_proxy3()
+        # proxies = 'http://' + proxy
+        proxies = get_zhima_proxy(self.proxies_list, format='bare')
         """以小时为单位筛选"""
         keyword = response.meta.get('keyword')
         is_empty = response.xpath(
@@ -289,8 +297,9 @@ class SearchSpider(scrapy.Spider):
 
     def parse_by_hour_province(self, response):
         """以小时和直辖市/省为单位筛选"""
-        proxy = get_proxy3()
-        proxies = 'http://' + proxy
+        # proxy = get_proxy3()
+        # proxies = 'http://' + proxy
+        proxies = get_zhima_proxy(self.proxies_list, format='bare')
         keyword = response.meta.get('keyword')
         is_empty = response.xpath(
             '//div[@class="card card-no-result s-pt20b40"]')
@@ -334,8 +343,9 @@ class SearchSpider(scrapy.Spider):
 
     def parse_page(self, response):
         """解析一页搜索结果的信息"""
-        proxy = get_proxy3()
-        proxies = 'http://' + proxy
+        # proxy = get_proxy3()
+        # proxies = 'http://' + proxy
+        proxies = get_zhima_proxy(self.proxies_list, format='bare')
         keyword = response.meta.get('keyword')
         is_empty = response.xpath(
             '//div[@class="card card-no-result s-pt20b40"]')
