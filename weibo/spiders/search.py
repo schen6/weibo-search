@@ -75,6 +75,7 @@ class SearchSpider(scrapy.Spider):
     # use new proxy
     run()
     proxies_list = get_proxies()
+    print(proxies_list)
 
     def start_requests(self):
         # proxy = get_proxy3()
