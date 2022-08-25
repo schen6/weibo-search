@@ -74,14 +74,12 @@ class SearchSpider(scrapy.Spider):
 
     # use new proxy
 
-    def __init__(self):
-        run()
-        self.proxies_list = get_proxies()
-        print(self.proxies_list)
-
     def start_requests(self):
         # proxy = get_proxy3()
         # proxies = 'http://' + proxy
+        run()
+        self.proxies_list = get_proxies()
+        print(self.proxies_list)
         proxies = get_zhima_proxy(self.proxies_list, format='bare')
         start_date = datetime.strptime(self.start_date, '%Y-%m-%d')
         end_date = datetime.strptime(self.end_date,
