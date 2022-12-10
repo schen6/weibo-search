@@ -51,7 +51,7 @@ DEFAULT_REQUEST_HEADERS = {
     'sec-fetch-site': 'same-origin',
     'sec-fetch-user': '?1',
     'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36',
+    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
     'cookie': cookie
 }
 ITEM_PIPELINES = {
@@ -83,7 +83,7 @@ START_DATE = st_dt  # '2021-04-17'
 END_DATE = end_dt  # '2021-04-18'
 # 进一步细分搜索的阈值，若结果页数大于等于该值，则认为结果没有完全展示，细分搜索条件重新搜索以获取更多微博。数值越大速度越快，也越有可能漏掉微博；数值越小速度越慢，获取的微博就越多。
 # 建议数值大小设置在40到50之间。
-FURTHER_THRESHOLD = 46
+FURTHER_THRESHOLD = 10
 # 图片文件存储路径
 IMAGES_STORE = './'
 # 视频文件存储路径
