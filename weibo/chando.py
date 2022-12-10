@@ -49,10 +49,17 @@ DOWNLOAD_DELAY = 10
 DEFAULT_REQUEST_HEADERS = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
     'Accept-Language': 'en-US,en;q=0.9',
-    # 'sec-ch-ua-platform': '"Linux"',
-    # 'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
-    # 'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
-    'cookie': cookie
+    'referer': 'https://weibo.com/',
+    'sec-ch-ua': '"Google Chrome";v="95", "Chromium";v="95", ";Not A Brand";v="99"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Linux"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-site',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36',
+    'cookie': '_s_tentry=passport.weibo.com; Apache=618878444263.2533.1657588638998; SINAGLOBAL=618878444263.2533.1657588638998; ULV=1657588639032:1:1:1:618878444263.2533.1657588638998:; PC_TOKEN=3f94cbca06; login_sid_t=87549da62d241df2bee64c0c5eba1968; cross_origin_proto=SSL; ALF=1691996856; SSOLoginState=1660460856; SUB=_2A25P_O9pDeRhGeRH7lMS8i_PzTyIHXVsiEehrDV8PUNbmtANLUXRkW9NTcB1lgNq_vqzsgpmN6nJHijs90CXH3CT; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWWKZWT5uMYkdzZ988zG-YY5JpX5KzhUgL.Foz4SK20eo20So52dJLoIp7LxKML1KBLBKnLxKqL1hnLBoM41h2NeoqceKz0; wvr=6; WBStorage=4d96c54e|undefined'
 
 }
 ITEM_PIPELINES = {
@@ -111,7 +118,7 @@ START_DATE = st_dt  # '2021-04-17'
 END_DATE = end_dt  # '2021-04-18'
 # 进一步细分搜索的阈值，若结果页数大于等于该值，则认为结果没有完全展示，细分搜索条件重新搜索以获取更多微博。数值越大速度越快，也越有可能漏掉微博；数值越小速度越慢，获取的微博就越多。
 # 建议数值大小设置在40到50之间。
-FURTHER_THRESHOLD = 46
+FURTHER_THRESHOLD = 10
 # 图片文件存储路径
 IMAGES_STORE = './'
 # 视频文件存储路径
