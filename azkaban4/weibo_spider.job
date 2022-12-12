@@ -1,4 +1,4 @@
 #xiaohongshu
 type=command
-command = sh /home/panther/weibo-search/exec4.sh
+command = sh /home/panther/weibo-search/worldcup.sh
 dependencies=start

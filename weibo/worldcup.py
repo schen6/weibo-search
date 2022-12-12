@@ -17,18 +17,21 @@ root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 cfp_path = root_path + '/social.conf'
 cfp.read(cfp_path)
 
-st_dt, end_dt = scrapydt.get_dates()
-print(st_dt, end_dt)
+# st_dt, end_dt = scrapydt.get_dates()
+# print(st_dt, end_dt)
+
+print(cfp.get('date', 'crawl_date'))
 
 if cfp.get('date','crawl_date'):
     dt = cfp.get('date','crawl_date')
-    # t = datetime.datetime.strptime(dt, '%Y-%m-%d')
-    # if t.date() < datetime.datetime.now().date():
-    #     t = t + datetime.timedelta(days=1)
-    #     new_t = t.strftime("%Y-%m-%d")
-    # cfp.set('date', 'crawl_date', '')
-    # with open(cfp_path, 'w') as configfile:
-    #     cfp.write(configfile)
+    t = datetime.datetime.strptime(dt, '%Y-%m-%d')
+    if t.date() < datetime.datetime.now().date():
+        t = t + datetime.timedelta(days=1)
+        new_t = t.strftime("%Y-%m-%d")
+    cfp.set('date', 'crawl_date', new_t)
+    with open(cfp_path, 'w') as configfile:
+        cfp.write(configfile)
+
 
 client = p.PostgresWriter()
 sql = '''
@@ -95,7 +98,7 @@ KEYWORD_LIST = [
     # '悦诗风吟~innisfree',
     # '梦妆~mamonde'
     # '玉兰油~olay',
-    '自然堂~chando~@自然堂'
+    '世界杯'
     # '芙丽芳丝~freeplus',
     # '完美日记~(perfect diary)',
     # '花西子~florasis',
@@ -113,9 +116,9 @@ CONTAIN_TYPE = 0
 # 具体支持的地名见region.py文件，注意只支持省或直辖市的名字，省下面的市名及直辖市下面的区县名不支持，不筛选请用”全部“
 REGION = ['全部']
 # 搜索的起始日期，为yyyy-mm-dd形式，搜索结果包含该日期
-START_DATE = st_dt  # '2021-04-17'
+START_DATE = dt  # '2021-04-17'
 # 搜索的终止日期，为yyyy-mm-dd形式，搜索结果包含该日期
-END_DATE = end_dt  # '2021-04-18'
+END_DATE = dt  # '2021-04-18'
 # 进一步细分搜索的阈值，若结果页数大于等于该值，则认为结果没有完全展示，细分搜索条件重新搜索以获取更多微博。数值越大速度越快，也越有可能漏掉微博；数值越小速度越慢，获取的微博就越多。
 # 建议数值大小设置在40到50之间。
 FURTHER_THRESHOLD = 10
