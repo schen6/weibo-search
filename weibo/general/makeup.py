@@ -40,7 +40,7 @@ COOKIES_ENABLED = False
 TELNETCONSOLE_ENABLED = False
 LOG_LEVEL = 'ERROR'
 # 访问完一个页面再访问下一个时需要等待的时间，默认为10秒
-DOWNLOAD_DELAY = 2
+DOWNLOAD_DELAY = 0
 DEFAULT_REQUEST_HEADERS = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
@@ -82,7 +82,7 @@ START_DATE = st_dt  # '2021-04-17'
 END_DATE = end_dt  # '2021-04-18'
 # 进一步细分搜索的阈值，若结果页数大于等于该值，则认为结果没有完全展示，细分搜索条件重新搜索以获取更多微博。数值越大速度越快，也越有可能漏掉微博；数值越小速度越慢，获取的微博就越多。
 # 建议数值大小设置在40到50之间。
-FURTHER_THRESHOLD = 10
+FURTHER_THRESHOLD = 5
 # 图片文件存储路径
 IMAGES_STORE = './'
 # 视频文件存储路径
