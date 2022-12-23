@@ -21,7 +21,7 @@ cfp.read(cfp_path)
 # print(st_dt, end_dt)
 #
 # print(cfp.get('date', 'crawl_date'))
-#
+# #
 # if cfp.get('date','crawl_date'):
 #     dt = cfp.get('date','crawl_date')
 #     t = datetime.datetime.strptime(dt, '%Y-%m-%d')
@@ -48,7 +48,7 @@ COOKIES_ENABLED = False
 TELNETCONSOLE_ENABLED = False
 LOG_LEVEL = 'ERROR'
 # 访问完一个页面再访问下一个时需要等待的时间，默认为10秒
-DOWNLOAD_DELAY = 2
+DOWNLOAD_DELAY = 0
 DEFAULT_REQUEST_HEADERS = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
     'Accept-Language': 'en-US,en;q=0.9',
@@ -98,7 +98,9 @@ KEYWORD_LIST = [
     # '悦诗风吟~innisfree',
     # '梦妆~mamonde'
     # '玉兰油~olay',
-    '世界杯'
+    #'(卡塔尔~厄瓜多尔~塞内加尔~荷兰~英格兰~伊朗~美国~威尔士~阿根廷~沙特阿拉伯~墨西哥～波兰～法国～丹麦～突尼斯～澳大利亚～西班牙～德国～日本～哥斯达黎加～比利时～加拿大～摩洛哥～克罗地亚～巴西～塞尔维亚～瑞士～喀麦隆～葡萄牙～加纳～乌拉圭～韩国队)vs(卡塔尔~厄瓜多尔~塞内加尔~荷兰~英格兰~伊朗~美国~威尔士~阿根廷~沙特阿拉伯~墨西哥～波兰～法国～丹麦～突尼斯～澳大利亚～西班牙～德国～日本～哥斯达黎加～比利时～加拿大～摩洛哥～克罗地亚～巴西～塞尔维亚～瑞士～喀麦隆～葡萄牙～加纳～乌拉圭～韩国队)'
+    '世界杯~阿根廷vs法国'
+    # '梅西～姆巴佩'
     # '芙丽芳丝~freeplus',
     # '完美日记~(perfect diary)',
     # '花西子~florasis',
@@ -116,7 +118,7 @@ CONTAIN_TYPE = 0
 # 具体支持的地名见region.py文件，注意只支持省或直辖市的名字，省下面的市名及直辖市下面的区县名不支持，不筛选请用”全部“
 REGION = ['全部']
 # 搜索的起始日期，为yyyy-mm-dd形式，搜索结果包含该日期
-START_DATE = '2022-11-19'  # '2021-04-17'
+START_DATE = '2022-12-18'  # '2021-04-17'
 # 搜索的终止日期，为yyyy-mm-dd形式，搜索结果包含该日期
 END_DATE = '2022-12-18'  # '2021-04-18'
 # 进一步细分搜索的阈值，若结果页数大于等于该值，则认为结果没有完全展示，细分搜索条件重新搜索以获取更多微博。数值越大速度越快，也越有可能漏掉微博；数值越小速度越慢，获取的微博就越多。
