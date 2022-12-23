@@ -55,5 +55,8 @@ SCRAPY_PROJECT=cpb scrapy crawl search
 SCRAPY_PROJECT=sassoon scrapy crawl search
 SCRAPY_PROJECT=spes scrapy crawl search
 SCRAPY_PROJECT=kans scrapy crawl search
+SCRAPY_PROJECT=baum scrapy crawl search
+SCRAPY_PROJECT=uniskin scrapy crawl search
+SCRAPY_PROJECT=hbn scrapy crawl search
 
 
