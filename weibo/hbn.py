@@ -95,7 +95,7 @@ KEYWORD_LIST = [
     # '悦诗风吟~innisfree',
     # '梦妆~mamonde'
     # '玉兰油~olay',
-    'hbn'
+    'hbn~@HBN颜究所'
     # '芙丽芳丝~freeplus',
     # '完美日记~(perfect diary)',
     # '花西子~florasis',

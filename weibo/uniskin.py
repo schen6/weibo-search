@@ -95,7 +95,7 @@ KEYWORD_LIST = [
     # '悦诗风吟~innisfree',
     # '梦妆~mamonde'
     # '玉兰油~olay',
-    'uniskin~优时颜'
+    'uniskin~优时颜~@UNISKIN优时颜'
     # '芙丽芳丝~freeplus',
     # '完美日记~(perfect diary)',
     # '花西子~florasis',
