@@ -5,7 +5,7 @@ import sys
 from datetime import datetime, timedelta
 from urllib.parse import unquote
 sys.path.append('/home/panther/')
-from vagabond.tools.proxy import get_proxy3
+from vagabond.tools.proxy_manager import get_proxy3
 # from vagabond.tools.proxy_manager import run, get_proxies, get_zhima_proxy
 
 import scrapy
