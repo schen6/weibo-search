@@ -73,7 +73,7 @@ ITEM_PIPELINES = {
 }
 # 要搜索的关键词列表，可写多个, 值可以是由关键词或话题组成的列表，也可以是包含关键词的txt文件路径，
 # 如'keyword_list.txt'，txt文件中每个关键词占一行
-KEYWORD_LIST = '/home/sail/brands2.txt'
+KEYWORD_LIST = '/home/panther/weibo-search/brands6.txt'
 
 # KEYWORD_LIST = [
 #
