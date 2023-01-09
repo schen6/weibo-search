@@ -35,8 +35,15 @@ sql = '''
     select cookie from social.weibo_c where comp = 'lenovo'
 '''
 cookie = client.fetch_data(sql)
+
+sql = '''
+    select wb_search as kws from project_mapping_brands where status = 1 and count >= 10
+'''
+kws = client.fetch_data(sql)
+
 client.client.close()
 cookie = cookie['cookie'][0]
+kw_list = list(kws['kws'])
 
 BOT_NAME = 'weibo'
 SPIDER_MODULES = ['weibo.spiders']
@@ -73,7 +80,8 @@ ITEM_PIPELINES = {
 }
 # 要搜索的关键词列表，可写多个, 值可以是由关键词或话题组成的列表，也可以是包含关键词的txt文件路径，
 # 如'keyword_list.txt'，txt文件中每个关键词占一行
-KEYWORD_LIST = '/home/sail/brands2.txt'
+
+KEYWORD_LIST = kw_list #'/home/sail/brands2.txt'
 
 # KEYWORD_LIST = [
 #
