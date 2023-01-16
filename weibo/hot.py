@@ -22,7 +22,7 @@ else:
 
 client = p.PostgresWriter()
 sql = '''
-    select cookie from social.weibo_c
+    select cookie from configs.cookies where platform = 'weibo' and source = 'desktop'
 '''
 cookie = client.fetch_data(sql)
 cookie = cookie['cookie'][0]

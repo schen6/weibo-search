@@ -26,7 +26,7 @@ if cfp.get('date','crawl_date'):
 
 client = p.PostgresWriter()
 sql = '''
-    select cookie from cookies where platform = 'weibo' and source = 'desktop'
+    select cookie from configs.cookies where platform = 'weibo' and source = 'desktop'
 '''
 cookie = client.fetch_data(sql)
 client.client.close()
