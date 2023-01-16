@@ -52,12 +52,12 @@ COOKIES_ENABLED = False
 TELNETCONSOLE_ENABLED = False
 LOG_LEVEL = 'ERROR'
 # 访问完一个页面再访问下一个时需要等待的时间，默认为10秒
-DOWNLOAD_DELAY = 0
+DOWNLOAD_DELAY = 2
 DEFAULT_REQUEST_HEADERS = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
     'Accept-Language': 'en-US,en;q=0.9',
     'referer': 'https://weibo.com/',
-    'sec-ch-ua': '"Google Chrome";v="95", "Chromium";v="95", ";Not A Brand";v="99"',
+    'sec-ch-ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"',
     'sec-ch-ua-mobile': '?0',
     'sec-ch-ua-platform': '"Linux"',
     'sec-fetch-dest': 'document',
@@ -65,8 +65,8 @@ DEFAULT_REQUEST_HEADERS = {
     'sec-fetch-site': 'same-site',
     'sec-fetch-user': '?1',
     'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36',
-    'cookie': cookie
+    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+    'cookie': '_s_tentry=passport.weibo.com; Apache=618878444263.2533.1657588638998; SINAGLOBAL=618878444263.2533.1657588638998; ULV=1657588639032:1:1:1:618878444263.2533.1657588638998:; login_sid_t=87549da62d241df2bee64c0c5eba1968; cross_origin_proto=SSL; SSOLoginState=1660460856; UOR=,,127.0.0.1:8081; PC_TOKEN=22fc1bc8ba; WBtopGlobal_register_version=2023011618; SCF=AqhywMaxWB5JBbLb2doXTyd-Qzh0vKm20dRXQ_MI1cta4I9djWvNO2d4AhER3pYRdJgFHSaupx5gh8XBk64blkw.; SUB=_2A25OwVfKDeRhGeRH7lMS8i_PzTyIHXVtt84CrDV8PUNbmtAKLWvukW9NTcB1lk3ofBvHhVLn-TMgDzJg7csLB_pC; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWWKZWT5uMYkdzZ988zG-YY5JpX5KzhUgL.Foz4SK20eo20So52dJLoI7LHKLiWK.xlKHYt; ALF=1705401113'
 
 }
 ITEM_PIPELINES = {
