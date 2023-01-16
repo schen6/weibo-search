@@ -35,7 +35,7 @@ cfp.read(cfp_path)
 
 client = p.PostgresWriter()
 sql = '''
-    select cookie from social.weibo_c where comp = 'lenovo'
+    select cookie from cookies where platform = 'weibo' and source = 'desktop'
 '''
 cookie = client.fetch_data(sql)
 client.client.close()
