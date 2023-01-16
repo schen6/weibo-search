@@ -66,7 +66,7 @@ class SearchSpider(scrapy.Spider):
     end_date = settings.get('END_DATE', datetime.now().strftime('%Y-%m-%d'))
     if util.str_to_time(start_date) > util.str_to_time(end_date):
         sys.exit('settings.py配置错误，START_DATE值应早于或等于END_DATE值，请重新配置settings.py')
-    further_threshold = settings.get('FURTHER_THRESHOLD', 46)
+    further_threshold = settings.get('FURTHER_THRESHOLD', 5)
     mongo_error = False
     pymongo_error = False
     mysql_error = False
