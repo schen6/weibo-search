@@ -32,12 +32,12 @@ if cfp.get('date','crawl_date'):
 
 client = p.PostgresWriter()
 sql = '''
-    select cookie from cookies where platform = 'weibo' and source = 'desktop'
+    select cookie from configs.cookies where platform = 'weibo' and source = 'desktop'
 '''
 cookie = client.fetch_data(sql)
 
 sql = '''
-    select wb_search as kws from project_mapping_brands where status = 1 and count >= 10
+    select wb_search as kws from configs.project_mapping_brands where status = 1 and count >= 10
 '''
 kws = client.fetch_data(sql)
 
