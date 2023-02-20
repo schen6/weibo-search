@@ -27,7 +27,7 @@ if cfp.get('date','crawl_date'):
     with open(cfp_path, 'w') as configfile:
         cfp.write(configfile)
 
-client = p.PostgresWriter()
+client = p.PostgresWriter(ip='unrandom.co')
 sql = '''
     select cookie from configs.cookies where platform = 'weibo' and source = 'desktop'
 '''
