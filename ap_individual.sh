@@ -4,7 +4,7 @@ cd /home/panther
 cd weibo-search
 #scrapy crawl search
 SCRAPY_PROJECT=chando scrapy crawl search
-#SCRAPY_PROJECT=clarins scrapy crawl search
+SCRAPY_PROJECT=clarins scrapy crawl search
 SCRAPY_PROJECT=clinique scrapy crawl search
 SCRAPY_PROJECT=dryu scrapy crawl search
 SCRAPY_PROJECT=elixir scrapy crawl search
