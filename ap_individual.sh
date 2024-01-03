@@ -58,6 +58,8 @@ SCRAPY_PROJECT=kans scrapy crawl search
 SCRAPY_PROJECT=baum scrapy crawl search
 SCRAPY_PROJECT=uniskin scrapy crawl search
 SCRAPY_PROJECT=hbn scrapy crawl search
+SCRAPY_PROJECT=grainrain scrapy crawl search
+SCRAPY_PROJECT=simpcare scrapy crawl search
 SCRAPY_PROJECT=all_brands scrapy crawl search
 
 
