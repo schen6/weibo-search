@@ -10,7 +10,6 @@ import vagabond.tools.scrapydt as scrapydt
 # import importlib
 # headers = importlib.import_module("headers")
 
-
 import configparser
 cfp = configparser.ConfigParser()
 root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -47,20 +46,18 @@ LOG_LEVEL = 'ERROR'
 # 访问完一个页面再访问下一个时需要等待的时间，默认为10秒
 DOWNLOAD_DELAY = 0
 DEFAULT_REQUEST_HEADERS = {
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
     'referer': 'https://weibo.com/',
-    'sec-ch-ua': '"Google Chrome";v="95", "Chromium";v="95", ";Not A Brand";v="99"',
+    'pragma': 'no-cache',
     'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Linux"',
     'sec-fetch-dest': 'document',
     'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'same-site',
+    'sec-fetch-site': 'same-origin',
     'sec-fetch-user': '?1',
     'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36',
+    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
     'cookie': cookie
-
 }
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,

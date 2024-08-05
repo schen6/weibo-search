@@ -41,8 +41,9 @@ LOG_LEVEL = 'ERROR'
 # 访问完一个页面再访问下一个时需要等待的时间，默认为10秒
 DOWNLOAD_DELAY = 0
 DEFAULT_REQUEST_HEADERS = {
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
+    'referer': 'https://weibo.com/',
     'pragma': 'no-cache',
     'sec-ch-ua-mobile': '?0',
     'sec-fetch-dest': 'document',
@@ -50,7 +51,7 @@ DEFAULT_REQUEST_HEADERS = {
     'sec-fetch-site': 'same-origin',
     'sec-fetch-user': '?1',
     'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
+    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
     'cookie': cookie
 }
 ITEM_PIPELINES = {
